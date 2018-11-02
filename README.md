@@ -8,9 +8,6 @@ This component is a combination of a combobox with asynchronous fetching of resu
 npm install @opuscapita/react-async-dropdown-with-search
 ```
 
-### Demo
-View the [DEMO](https://opuscapita.github.io/react-async-dropdown-with-search)
-
 ### Builds
 #### UMD
 The default build with compiled styles in the .js file. Also minified version available in the lib/umd directory.
