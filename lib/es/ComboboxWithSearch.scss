@@ -1,0 +1,35 @@
+.combobox-with-search {
+  display: flex;
+  flex: 1 1 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+
+  .combobox-with-search__combobox {
+    display: flex;
+    flex: 1 1 0;
+
+    .Select {
+      flex: 1 1 0;
+
+      .Select-control {
+        border-style: none;
+      }
+
+      .Select-arrow-zone {
+        display: none;
+      }
+      .Select-clear-zone {
+        padding-right: 3px;
+      }
+    }
+
+    .combobox-with-search__search-button {
+      display: flex;
+      flex: 0 0 auto;
+      justify-content: center;
+      align-items: center;
+      padding: 3px;
+      cursor: pointer;
+    }
+  }
+}

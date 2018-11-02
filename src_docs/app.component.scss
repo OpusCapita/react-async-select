@@ -1,0 +1,37 @@
+@import '~@opuscapita/oc-cm-common-styles/styles/app',
+        '~@opuscapita/oc-cm-common-styles/styles/mixins',
+        '~@opuscapita/oc-cm-common-styles/styles/bootstrap_v3_custom',
+        '~@opuscapita/oc-cm-common-styles/styles/bootstrap_v3_overrides',
+        '~@opuscapita/oc-cm-common-styles/styles/bootstrap_v3_without_icons',
+        '~@opuscapita/oc-cm-common-styles/styles/buttons',
+        '~@opuscapita/oc-cm-common-styles/styles/colors',
+        '~@opuscapita/oc-cm-common-styles/styles/icons',
+        '~@opuscapita/oc-cm-common-styles/styles/inputs',
+        '~@opuscapita/oc-cm-common-styles/styles/variables';
+
+@import './flex';
+
+// Enable to include font-awesome
+// ******************************
+// $fa-font-path: '~font-awesome/fonts';
+// @import '~font-awesome/scss/font-awesome.scss';
+
+.oc-margin-bottom {
+    margin-bottom: 1rem;
+}
+
+#oc-examples {
+  height: 100%;
+}
+
+.oc-link-active {
+    color: $oc-color-primary-orange !important;
+}
+
+.oc-burger-orange {
+    background-color: $oc-color-primary-orange;
+
+    .oc-icon-burger {
+        fill: $oc-color-white;
+    }
+}

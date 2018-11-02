@@ -1,0 +1,13 @@
+.combobox-with-search__modal {
+  .combobox-with-search__modal-search-filters {
+    display: flex;
+    flex-direction: row;
+
+    .combobox-with-search__modal-search-filter {
+      margin: 5px;
+    }
+    .combobox-with-search__modal-search-label {
+      margin-right: 5px;
+    }
+  }
+}
