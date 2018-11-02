@@ -5,7 +5,7 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 
-const libraryName = 'react-async-dropdown-with-search';
+const libraryName = 'react-async-select';
 
 const isProd = process.env.NODE_ENV === 'production';
 

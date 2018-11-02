@@ -1,11 +1,11 @@
 {
   "author": "OpusCapita (www.opuscapita.com)",
-  "name": "@opuscapita/react-async-dropdown-with-search",
+  "name": "@opuscapita/react-async-select",
   "version": "0.0.1",
   "private": false,
   "license": "MIT",
   "description": "Dropdown component with advanced search modal",
-  "main": "lib/umd/react-async-dropdown-with-search.js",
+  "main": "lib/umd/react-async-select",
   "cjs": "lib/cjs/index.js",
   "es": "lib/es/index.js",
   "scripts": {
@@ -105,6 +105,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/OpusCapita/react-async-dropdown-with-search.git"
+    "url": "https://github.com/OpusCapita/react-async-select.git"
   }
 }

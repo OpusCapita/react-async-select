@@ -1,15 +1,15 @@
-# react-async-dropdown-with-search
+# react-async-select
 
 ### Description
 This component is a combination of a combobox with asynchronous fetching of results and a modal search dialog for more filtering possibilities.
 
 ### Installation
 ```
-npm install @opuscapita/react-async-dropdown-with-search
+npm install @opuscapita/react-async-select
 ```
 
 ### Demo
-View the [DEMO](https://opuscapita.github.io/react-async-dropdown-with-search)
+View the [DEMO](https://opuscapita.github.io/react-async-select)
 
 ### Builds
 #### UMD
