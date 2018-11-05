@@ -132,11 +132,13 @@ class SearchModal extends Component {
     });
   };
 
-  renderSearchField = ({ name: fieldName, value }, labelPrefix, key) => {
+  renderSearchField = ({ name: fieldName, value }, labelPrefix, key, localizationTexts) => {
+    const translatedPrefix = localizationTexts[labelPrefix];
+    const translatedFieldName = localizationTexts[`field.${fieldName}`];
     return (
       <div className={`combobox-with-search__modal-search-filter`} key={`search-field-${key}`}>
         <label className="combobox-with-search__modal-search-label" htmlFor={`search-field-${fieldName}`}>
-          {`${labelPrefix} ${fieldName}`}
+          {`${translatedPrefix} ${translatedFieldName}`}
         </label>
         <input
           type="text"
@@ -160,6 +162,9 @@ class SearchModal extends Component {
       page,
       pageSize,
     } = this.state;
+    const {
+      localizationTexts
+    } = this.props;
     const fieldObjects = Object.entries(searchFields).map(([name, value]) => ({ name, value }));
     const columns = fieldObjects.map(({ name }) => {
       return {
@@ -172,23 +177,27 @@ class SearchModal extends Component {
     return (
       <Modal className="combobox-with-search__modal" show={this.props.showModal} onHide={this.handleClose}>
         <Modal.Header closeButton={true}>
-          {this.props.title}
+          <h4>
+            { this.props.title }
+          </h4>
         </Modal.Header>
         <Modal.Body>
           <div className="combobox-with-search__modal-search-filters">
             {
               firstField && this.renderSearchField(
                 firstField,
-                this.props.i18n.getMessage('search.by'),
-                `00-${firstField.name}`
+                'searchBy',
+                `00-${firstField.name}`,
+                localizationTexts
               )
             }
             {
               otherFields.map(
                 (field, i) => this.renderSearchField(
                   field,
-                  this.props.i18n.getMessage('by'),
-                  `${i}-${field.name}`
+                  'by',
+                  `${i}-${field.name}`,
+                  localizationTexts
                 )
               )
             }
@@ -199,8 +208,8 @@ class SearchModal extends Component {
               data={searchResults}
               columns={columns}
               pageSize={pageSize}
-              loadingText={this.props.i18n.getMessage('table.loading')}
-              noDataText={loading ? '' : this.props.i18n.getMessage('table.no.items')}
+              loadingText={localizationTexts.loading}
+              noDataText={loading ? '' : localizationTexts.noItems}
               loading={loading}
               pages={pages}
               page={page}
@@ -222,9 +231,11 @@ class SearchModal extends Component {
             onClick={this.handleSelect}
             disabled={!selectedRow}
           >
-            Select
+            { localizationTexts.select }
           </Button>
-          <Button bsStyle="default" onClick={this.handleClose}>Close</Button>
+          <Button bsStyle="default" onClick={this.handleClose}>
+            { localizationTexts.close }
+          </Button>
         </Modal.Footer>
       </Modal>
     );
@@ -238,9 +249,7 @@ SearchModal.propTypes = {
   showModal: PropTypes.bool,
   onClose: PropTypes.func,
   onSelect: PropTypes.func,
-  i18n: PropTypes.shape({
-    getMessage: PropTypes.func,
-  }),
+  localizationTexts: PropTypes.object,
 };
 
 SearchModal.defaultProps = {
@@ -250,7 +259,6 @@ SearchModal.defaultProps = {
   showModal: false,
   onClose: () => {},
   onSelect: () => {},
-  i18n: id => id,
 };
 
 export default SearchModal;

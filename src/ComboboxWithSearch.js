@@ -69,7 +69,7 @@ export class ComboboxWithSearch extends Component {
           showModal={this.state.showModal}
           onClose={this.handleClose}
           onSelect={this.handleChange}
-          i18n={this.props.i18n}
+          localizationTexts={this.props.localizationTexts}
           {...this.props.modal}
         />
       </div>
@@ -81,9 +81,7 @@ ComboboxWithSearch.propTypes = {
   value: PropTypes.any,
   onSelect: PropTypes.func,
   loadOptions: PropTypes.func,
-  i18n: PropTypes.shape({
-    getMessage: PropTypes.func,
-  }),
+  localizationTexts: PropTypes.object,
   modal: PropTypes.shape({
     title: PropTypes.string,
     fields: PropTypes.array,

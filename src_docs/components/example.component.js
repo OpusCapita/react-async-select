@@ -1,23 +1,6 @@
 import React from 'react';
 import Example from '../../src/index';
 
-const i18n = {
-  getMessage: id => {
-    switch (id) {
-      case 'search.by':
-        return 'Search by';
-      case 'by':
-        return 'By';
-      case 'table.loading':
-        return 'Loading...';
-      case 'table.no.items':
-        return 'No items';
-      default:
-        return id;
-    }
-  }
-};
-
 const options = [
   { description: 'first number commonStr', code: 1 },
   { description: 'second number commonStr', code: 2 },
@@ -75,7 +58,16 @@ export default class ComponentView extends React.PureComponent {
     return (
       <div style={{ padding: '20px' }}>
         <Example
-          i18n={i18n}
+          localizationTexts={{
+            "close": "Close",
+            "select": "Select",
+            "field.code": "code",
+            "field.description": "description",
+            "loading": "Loading...",
+            "noItems": "No items",
+            "searchBy": "Search by",
+            "by": "by"
+          }}
           value={'b'}
           loadOptions={comboLoadOptions}
           onSelect={value => console.log({ value })}
