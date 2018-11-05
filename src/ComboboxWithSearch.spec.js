@@ -16,7 +16,16 @@ describe('ComboboxWithSearch', () => {
       value: '',
       onSelect: () => {},
       loadOptions: () => Promise.resolve({ options: [{ label: 'a', value: 'a' }] }),
-      i18n: { getMessage: id => id },
+      localizationTexts: {
+        "close": "Close",
+        "select": "Select",
+        "field.code": "code",
+        "field.description": "description",
+        "loading": "Loading...",
+        "noItems": "No items",
+        "searchBy": "Search by",
+        "by": "by"
+      },
       modal: {
         title: '',
         fields: ['key'],

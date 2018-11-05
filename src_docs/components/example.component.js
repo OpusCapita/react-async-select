@@ -1,33 +1,6 @@
 import React from 'react';
 import Example from '../../src/index';
 
-const i18n = {
-  getMessage: id => {
-    switch (id) {
-      case 'Translation.Search.By':
-        return 'Search by';
-      case 'Translation.By':
-        return 'By';
-      case 'Translation.Table.Loading':
-        return 'Loading...';
-      case 'Translation.Table.No.Items':
-        return 'No items';
-      case 'Translation.Search.Field.code.Label':
-        return 'code';
-      case 'Translation.Search.Field.description.Label':
-        return 'description';
-      case 'Translation.Select':
-        return 'Select';
-      case 'Translation.Close':
-        return 'Close';
-      case 'Search.Entries':
-        return 'Search entries:';
-      default:
-        return id;
-    }
-  }
-};
-
 const options = [
   { description: 'first number commonStr', code: 1 },
   { description: 'second number commonStr', code: 2 },
@@ -85,13 +58,21 @@ export default class ComponentView extends React.PureComponent {
     return (
       <div style={{ padding: '20px' }}>
         <Example
-          i18n={i18n}
-          mapTranslationKey={key => `Translation.${key}`}
+          localizationTexts={{
+            "close": "Close",
+            "select": "Select",
+            "field.code": "code",
+            "field.description": "description",
+            "loading": "Loading...",
+            "noItems": "No items",
+            "searchBy": "Search by",
+            "by": "by"
+          }}
           value={'b'}
           loadOptions={comboLoadOptions}
           onSelect={value => console.log({ value })}
           modal={{
-            title: 'Search.Entries',
+            title: 'Search entries',
             fields: [
               'code',
               'description',
