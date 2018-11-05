@@ -21,17 +21,18 @@ Also you need to configure sass loader, since all the styles are in sass format.
 * Add [SASS loader](https://github.com/webpack-contrib/sass-loader) to support importing of SASS styles.
 
 ### API
-| Prop name                | Type             | Default                                            | Description                                    |
-| ------------------------ | ---------------- | -------------------------------------------------- | ---------------------------------------------- |
-| value                    | any              |                                                    | The initially selected value                   |
-| loadOptions              | function         | () => Promise.resolve({ options: [] })             | Function for fetching options for the combobox |
-| onSelect                 | function         | () => {}                                           | Selection callback function                    |
-| i18n                     | object           |                                                    |                                                |
-| i18n.getMessage          | function         | id => id                                           | Function for getting localized texts           |
-| modal                    | object           |                                                    |                                                |
-| modal.title              | string           | ''                                                 | Localized title of the modal                   |
-| modal.fields             | [string]         | []                                                 | List of fields to show as columns              |
-| modal.loadOptions        | function         | () => Promise.resolve({ data: [], totalCount: 0 }) | Function for fetching entries to the table     |
+| Prop name                | Type             | Default                                            | Description                                                           |
+| ------------------------ | ---------------- | -------------------------------------------------- | --------------------------------------------------------------------- |
+| value                    | any              |                                                    | The initially selected value                                          |
+| loadOptions              | function         | () => Promise.resolve({ options: [] })             | Function for fetching options for the combobox                        |
+| onSelect                 | function         | () => {}                                           | Selection callback function                                           |
+| mapTranslationKey        | function         | key => key                                         | Transforms the translation key before it is passed to i18n.getMessage |
+| i18n                     | object           |                                                    |                                                                       |
+| i18n.getMessage          | function         | id => id                                           | Function for getting localized texts                                  |
+| modal                    | object           |                                                    |                                                                       |
+| modal.title              | string           | ''                                                 | Localized title of the modal                                          |
+| modal.fields             | [string]         | []                                                 | List of fields to show as columns                                     |
+| modal.loadOptions        | function         | () => Promise.resolve({ data: [], totalCount: 0 }) | Function for fetching entries to the table                            |
 
 ### Code example
 ```jsx
@@ -45,6 +46,7 @@ export default class ReactView extends React.Component {
         i18n={{
           getMessage: id => id,
         }}
+        mapTranslationKey={key => `Common.Translations.${key}`}
         value={'a'}
         loadOptions={
           () => Promise.resolve({

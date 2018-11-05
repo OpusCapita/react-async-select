@@ -70,6 +70,7 @@ export class ComboboxWithSearch extends Component {
           onClose={this.handleClose}
           onSelect={this.handleChange}
           i18n={this.props.i18n}
+          mapTranslationKey={this.props.mapTranslationKey}
           {...this.props.modal}
         />
       </div>
@@ -84,6 +85,7 @@ ComboboxWithSearch.propTypes = {
   i18n: PropTypes.shape({
     getMessage: PropTypes.func,
   }),
+  mapTranslationKey: PropTypes.func,
   modal: PropTypes.shape({
     title: PropTypes.string,
     fields: PropTypes.array,
@@ -97,6 +99,7 @@ ComboboxWithSearch.propTypes = {
 ComboboxWithSearch.defaultProps = {
   onSelect: () => {},
   loadOptions: () => Promise.resolve({ options: [] }),
+  mapTranslationKey: key => key
 };
 
 export default ComboboxWithSearch;
