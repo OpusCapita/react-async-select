@@ -4,6 +4,7 @@
 
 ## <next>
 * Fix modal table updating on input
+* Update README.md
 
 ## 1.0.0
 * Improved localization configurability

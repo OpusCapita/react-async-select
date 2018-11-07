@@ -48,10 +48,16 @@ export default class ReactView extends React.Component {
   render() {
     return (
       <Dropdown
-        i18n={{
-          getMessage: id => id,
+        localizationTexts={{
+          searchBy: 'Search by',
+          by: 'By',
+          close: 'Close',
+          select: 'Select',
+          loading: 'Loading...',
+          noItems: 'No items',
+          "field.fieldName1": 'my field',
+          "field.fieldName2": 'another field'
         }}
-        mapTranslationKey={key => `Common.Translations.${key}`}
         value={'a'}
         loadOptions={
           () => Promise.resolve({
