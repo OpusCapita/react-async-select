@@ -55,11 +55,11 @@ class SearchModal extends Component {
       [fieldName]: value,
     };
     this.setState({
-      page: 0,
-      searchFields: newSearchFields,
+      searchFields: newSearchFields
     });
-    this.handleFetchData({
+    this.fetchData({
       searchFields: newSearchFields,
+      page: 0,
     });
   };
 
@@ -144,7 +144,7 @@ class SearchModal extends Component {
           type="text"
           id={`search-field-${fieldName}`}
           value={value}
-          onChange={e => {
+          onInput={e => {
             this.setSearchValue(fieldName, e.target.value)
           }}
         />
