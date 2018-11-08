@@ -4,6 +4,8 @@
 
 ## <next>
 * Modify value selection to select the entire option object, not only it's value
+* Fixed translation bug in column headings
+* Updated demo
 
 ## 1.0.1
 * Fix modal table updating on input
