@@ -38,8 +38,7 @@ export class ComboboxWithSearch extends Component {
     });
   };
 
-  handleChange = (valueObj) => {
-    const value = valueObj && valueObj.value;
+  handleChange = (value) => {
     this.setState({
       value,
     });
