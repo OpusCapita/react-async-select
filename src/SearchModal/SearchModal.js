@@ -85,7 +85,7 @@ class SearchModal extends Component {
     const {
       selectedRow,
     } = this.state;
-    this.props.onSelect({ value: selectedRow && selectedRow.original.value });
+    this.props.onSelect(selectedRow && selectedRow.original);
     this.handleClose();
   };
 
@@ -168,7 +168,7 @@ class SearchModal extends Component {
     const fieldObjects = Object.entries(searchFields).map(([name, value]) => ({ name, value }));
     const columns = fieldObjects.map(({ name }) => {
       return {
-        Header: name,
+        Header: localizationTexts[`field.${name}`],
         accessor: name,
       };
     });
