@@ -26,6 +26,7 @@ const modalLoadOptions = ({ searchFields, offset, limit }) => {
   });
   const modalOptionShapes = filteredOptions.map(option => ({
     ...option,
+    label: option.description,
     value: option.code,
   }));
   return new Promise(resolve => {
