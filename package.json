@@ -37,8 +37,6 @@
     "react-dom": "15 || 16"
   },
   "devDependencies": {
-    "@opuscapita/react-icons": "3.0.3",
-    "@opuscapita/react-select": "1.0.0-oc.0",
     "autoprefixer": "8.6.3",
     "babel-cli": "6.26.0",
     "babel-eslint": "8.2.3",
@@ -85,9 +83,7 @@
     "react-hot-loader": "4.3.3",
     "react-router": "4.3.1",
     "react-router-dom": "4.3.1",
-    "react-select": "1.1.0",
     "react-svg-loader": "2.1.0",
-    "react-table": "6.8.6",
     "rimraf": "2.6.2",
     "sass-loader": "7.0.3",
     "sinon": "6.0.0",
@@ -101,7 +97,10 @@
     "write-file-webpack-plugin": "4.3.2"
   },
   "dependencies": {
-    "@opuscapita/oc-cm-common-styles": "2.1.0"
+    "@opuscapita/oc-cm-common-styles": "2.1.0",
+    "@opuscapita/react-icons": "3.0.3",
+    "@opuscapita/react-select": "1.0.0-oc.0",
+    "react-table": "6.8.6"
   },
   "repository": {
     "type": "git",

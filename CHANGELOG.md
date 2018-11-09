@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Fix dependencies
 
 ## 1.0.2
 * Modify value selection to select the entire option object, not only it's value
