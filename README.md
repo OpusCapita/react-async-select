@@ -24,8 +24,9 @@ Also you need to configure sass loader, since all the styles are in sass format.
 | Prop name                       | Type     | Default                                            | Description                                    |
 | ------------------------------- | -------- | -------------------------------------------------- | ---------------------------------------------- |
 | value                           | any      |                                                    | The initially selected value                   |
-| loadOptions                     | function | () => Promise.resolve({ options: [] })             | Function for fetching options for the combobox |
 | onSelect                        | function | () => {}                                           | Selection callback function                    |
+| handleChange                    | function | Sets internal state and calls setState callback    | Handles internal state on selecting an item    |
+| loadOptions                     | function | () => Promise.resolve({ options: [] })             | Function for fetching options for the combobox |
 | localizationTexts               | object   |                                                    | A dictionary with translated texts as values   |
 | localizationTexts.["searchBy"]  |          |                                                    | UI text prefix for the first search field      |
 | localizationTexts.["by"]        |          |                                                    | UI text prefix for other search fields         |
@@ -67,7 +68,12 @@ export default class ReactView extends React.Component {
             ]
           })
         }
-        onSelect: () => { /* Capture new selected value */ },
+        onSelect={() => { /* Capture new selected value */ }}
+        handleChange={({ value, setState, onSelect }) => {
+          setState({ value });
+          onSelect(value);
+          return value;
+        }}
         modal={{
           title: 'Search entries',
           fields: [

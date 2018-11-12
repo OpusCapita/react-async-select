@@ -58,29 +58,61 @@ export default class ComponentView extends React.PureComponent {
   render() {
     return (
       <div style={{ padding: '20px' }}>
-        <Example
-          localizationTexts={{
-            "close": "Close",
-            "select": "Select",
-            "field.code": "code",
-            "field.description": "description",
-            "loading": "Loading...",
-            "noItems": "No items",
-            "searchBy": "Search by",
-            "by": "by"
-          }}
-          value={'b'}
-          loadOptions={comboLoadOptions}
-          onSelect={value => console.log({ value })}
-          modal={{
-            title: 'Search entries',
-            fields: [
-              'code',
-              'description',
-            ],
-            loadOptions: modalLoadOptions,
-          }}
-        />
+        <div>
+          <h4>Simple component</h4>
+          <Example
+            localizationTexts={{
+              "close": "Close",
+              "select": "Select",
+              "field.code": "code",
+              "field.description": "description",
+              "loading": "Loading...",
+              "noItems": "No items",
+              "searchBy": "Search by",
+              "by": "by"
+            }}
+            value={{ value: 'b', label: 'second char commonStr' }}
+            loadOptions={comboLoadOptions}
+            onSelect={value => console.log({ value })}
+            modal={{
+              title: 'Search entries',
+              fields: [
+                'code',
+                'description',
+              ],
+              loadOptions: modalLoadOptions,
+            }}
+          />
+        </div>
+        <div>
+          <h4>Customized change handler</h4>
+          <Example
+            localizationTexts={{
+              "close": "Close",
+              "select": "Select",
+              "field.code": "code",
+              "field.description": "description",
+              "loading": "Loading...",
+              "noItems": "No items",
+              "searchBy": "Search by",
+              "by": "by"
+            }}
+            loadOptions={comboLoadOptions}
+            onSelect={value => console.log({ value })}
+            handleChange={({ value, setState, onSelect }) => {
+              onSelect(value);
+              return value;
+            }}
+            modal={{
+              title: 'Search entries',
+              fields: [
+                'code',
+                'description',
+              ],
+              loadOptions: modalLoadOptions,
+            }}
+          />
+        </div>
       </div>
     );
   }
