@@ -39,11 +39,11 @@ export class ComboboxWithSearch extends Component {
   };
 
   handleChange = (value) => {
-    this.setState({
+    this.props.handleChange({
       value,
+      setState: newState => this.setState({ ...newState }),
+      onSelect: value => this.props.onSelect(value),
     });
-    this.props.onSelect(value);
-    return value;
   }
 
   render() {
@@ -78,8 +78,9 @@ export class ComboboxWithSearch extends Component {
 
 ComboboxWithSearch.propTypes = {
   value: PropTypes.any,
-  onSelect: PropTypes.func,
   loadOptions: PropTypes.func,
+  onSelect: PropTypes.func,
+  handleChange: PropTypes.func,
   localizationTexts: PropTypes.object,
   modal: PropTypes.shape({
     title: PropTypes.string,
@@ -92,8 +93,13 @@ ComboboxWithSearch.propTypes = {
 };
 
 ComboboxWithSearch.defaultProps = {
-  onSelect: () => {},
   loadOptions: () => Promise.resolve({ options: [] }),
+  onSelect: () => {},
+  handleChange: ({ value, setState, onSelect }) => {
+    setState({ value });
+    onSelect(value);
+    return value;
+  },
 };
 
 export default ComboboxWithSearch;
