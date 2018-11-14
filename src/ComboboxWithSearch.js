@@ -15,7 +15,8 @@ const ICON_SIZE = {
 };
 
 const valueBecomesDefinedOrIsCleared = (nextProps, currentProps) => !!nextProps.value !== !!currentProps.value;
-const OptionValueChanges = (nextProps, currentProps) => nextProps.value.value !== currentProps.value.value;
+const OptionValueChanges = (nextProps, currentProps) => nextProps.value && currentProps.value &&
+  nextProps.value.value !== currentProps.value.value;
 
 export class ComboboxWithSearch extends Component {
   constructor(props) {
