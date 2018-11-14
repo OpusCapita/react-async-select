@@ -14,6 +14,9 @@ const ICON_SIZE = {
   height: 15,
 };
 
+const valueBecomesDefinedOrIsCleared = (nextProps, currentProps) => !!nextProps.value !== !!currentProps.value;
+const OptionValueChanges = (nextProps, currentProps) => nextProps.value.value !== currentProps.value.value;
+
 export class ComboboxWithSearch extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +27,14 @@ export class ComboboxWithSearch extends Component {
       value,
       showModal: false,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (valueBecomesDefinedOrIsCleared(nextProps, this.props) || OptionValueChanges(nextProps, this.props)) {
+      this.setState({
+        value: nextProps.value,
+      });
+    }
   }
 
   handleOpen = () => {
@@ -47,12 +58,23 @@ export class ComboboxWithSearch extends Component {
   }
 
   render() {
+    const {
+      value,
+      loadOptions,
+      onSelect,
+      handleChange,
+      localizationTexts,
+      modal: modalProps,
+      ...extraProps
+    } = this.props;
     return (
       <div className="combobox-with-search">
         <div className="combobox-with-search__combobox">
           <Select
-            {...this.props}
-            onChange={this.handleChange}
+            {...extraProps}
+            value={value}
+            loadOptions={loadOptions}
+            onChange={value => this.handleChange(value)}
             value={this.state.value}
           />
           <div className="combobox-with-search__search-button">
@@ -68,8 +90,8 @@ export class ComboboxWithSearch extends Component {
           showModal={this.state.showModal}
           onClose={this.handleClose}
           onSelect={this.handleChange}
-          localizationTexts={this.props.localizationTexts}
-          {...this.props.modal}
+          localizationTexts={localizationTexts}
+          {...modalProps}
         />
       </div>
     );
@@ -77,7 +99,10 @@ export class ComboboxWithSearch extends Component {
 }
 
 ComboboxWithSearch.propTypes = {
-  value: PropTypes.any,
+  value: PropTypes.shape({
+    value: PropTypes.any,
+    label: PropTypes.string,
+  }),
   loadOptions: PropTypes.func,
   onSelect: PropTypes.func,
   handleChange: PropTypes.func,
