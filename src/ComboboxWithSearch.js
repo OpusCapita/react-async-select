@@ -65,6 +65,7 @@ export class ComboboxWithSearch extends Component {
       onSelect, // eslint-disable-line no-unused-vars
       handleChange, // eslint-disable-line no-unused-vars
       localizationTexts,
+      disabled,
       modal: modalProps,
       ...extraProps
     } = this.props;
@@ -73,19 +74,22 @@ export class ComboboxWithSearch extends Component {
         <div className="combobox-with-search__combobox">
           <Select
             {...extraProps}
+            disabled={disabled}
             value={value}
             loadOptions={loadOptions}
             onChange={value => this.handleChange(value)}
             value={this.state.value}
           />
-          <div className="combobox-with-search__search-button">
-            <Icon
-              type="indicator"
-              name="search"
-              onClick={this.handleOpen}
-              {...ICON_SIZE}
-            />
-          </div>
+          { !disabled &&
+            <div className="combobox-with-search__search-button">
+              <Icon
+                type="indicator"
+                name="search"
+                onClick={this.handleOpen}
+                {...ICON_SIZE}
+              />
+            </div>
+          }
         </div>
         <SearchModal
           showModal={this.state.showModal}
@@ -108,6 +112,7 @@ ComboboxWithSearch.propTypes = {
   onSelect: PropTypes.func,
   handleChange: PropTypes.func,
   localizationTexts: PropTypes.object,
+  disabled: PropTypes.bool,
   modal: PropTypes.shape({
     title: PropTypes.string,
     fields: PropTypes.array,
@@ -126,6 +131,7 @@ ComboboxWithSearch.defaultProps = {
     onSelect(value);
     return value;
   },
+  disabled: false,
 };
 
 export default ComboboxWithSearch;

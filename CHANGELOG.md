@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Added functionality to disable component
 
 ## 1.0.6
 * Fixed reference error in componentWillReceiveProps lifecycle function

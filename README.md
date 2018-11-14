@@ -27,6 +27,7 @@ Also you need to configure sass loader, since all the styles are in sass format.
 | onSelect                        | function | () => {}                                           | Selection callback function                    |
 | handleChange                    | function | Sets internal state and calls setState callback    | Handles internal state on selecting an item    |
 | loadOptions                     | function | () => Promise.resolve({ options: [] })             | Function for fetching options for the combobox |
+| disabled                        | boolean  | false                                              | Disables the component from user interaction   |
 | localizationTexts               | object   |                                                    | A dictionary with translated texts as values   |
 | localizationTexts.["searchBy"]  |          |                                                    | UI text prefix for the first search field      |
 | localizationTexts.["by"]        |          |                                                    | UI text prefix for other search fields         |
@@ -59,6 +60,7 @@ export default class ReactView extends React.Component {
           "field.fieldName1": 'my field',
           "field.fieldName2": 'another field'
         }}
+        disabled={false}
         value={'a'}
         loadOptions={
           () => Promise.resolve({

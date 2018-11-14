@@ -113,6 +113,33 @@ export default class ComponentView extends React.PureComponent {
             }}
           />
         </div>
+        <div>
+          <h4>Disabled component</h4>
+          <Example
+            localizationTexts={{
+              "close": "Close",
+              "select": "Select",
+              "field.code": "code",
+              "field.description": "description",
+              "loading": "Loading...",
+              "noItems": "No items",
+              "searchBy": "Search by",
+              "by": "by"
+            }}
+            disabled={true}
+            value={{ value: 'b', label: 'second char commonStr' }}
+            loadOptions={comboLoadOptions}
+            onSelect={value => console.log({ value })}
+            modal={{
+              title: 'Search entries',
+              fields: [
+                'code',
+                'description',
+              ],
+              loadOptions: modalLoadOptions,
+            }}
+          />
+        </div>
       </div>
     );
   }
