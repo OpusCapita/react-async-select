@@ -14,6 +14,9 @@ const ICON_SIZE = {
   height: 15,
 };
 
+const valueBecomesDefinedOrIsCleared = (nextProps, currentProps) => !!nextProps.value !== !!currentProps.value;
+const OptionValueChanges = (nextProps, currentProps) => nextProps.value.value !== currentProps.value.value;
+
 export class ComboboxWithSearch extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +27,14 @@ export class ComboboxWithSearch extends Component {
       value,
       showModal: false,
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (valueBecomesDefinedOrIsCleared(nextProps, this.props) || OptionValueChanges(nextProps, this.props)) {
+      this.setState({
+        value: nextProps.value,
+      });
+    }
   }
 
   handleOpen = () => {
@@ -88,7 +99,10 @@ export class ComboboxWithSearch extends Component {
 }
 
 ComboboxWithSearch.propTypes = {
-  value: PropTypes.any,
+  value: PropTypes.shape({
+    value: PropTypes.any,
+    label: PropTypes.string,
+  }),
   loadOptions: PropTypes.func,
   onSelect: PropTypes.func,
   handleChange: PropTypes.func,
