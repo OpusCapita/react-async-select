@@ -2,9 +2,17 @@
   .combobox-with-search__modal-search-filters {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 
     .combobox-with-search__modal-search-filter {
       margin: 5px;
+      display: flex;
+      flex-direction: column;
+      flex: 1 0 auto;
+
+      input {
+        width: 100%;
+      }
     }
     .combobox-with-search__modal-search-label {
       margin-right: 5px;
