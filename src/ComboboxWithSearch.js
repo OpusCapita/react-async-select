@@ -61,8 +61,8 @@ export class ComboboxWithSearch extends Component {
     const {
       value,
       loadOptions,
-      onSelect,
-      handleChange,
+      onSelect, // eslint-disable-line no-unused-vars
+      handleChange, // eslint-disable-line no-unused-vars
       localizationTexts,
       modal: modalProps,
       ...extraProps
