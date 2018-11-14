@@ -47,12 +47,23 @@ export class ComboboxWithSearch extends Component {
   }
 
   render() {
+    const {
+      value,
+      loadOptions,
+      onSelect,
+      handleChange,
+      localizationTexts,
+      modal: modalProps,
+      ...extraProps
+    } = this.props;
     return (
       <div className="combobox-with-search">
         <div className="combobox-with-search__combobox">
           <Select
-            {...this.props}
-            onChange={this.handleChange}
+            {...extraProps}
+            value={value}
+            loadOptions={loadOptions}
+            onChange={value => this.handleChange(value)}
             value={this.state.value}
           />
           <div className="combobox-with-search__search-button">
@@ -68,8 +79,8 @@ export class ComboboxWithSearch extends Component {
           showModal={this.state.showModal}
           onClose={this.handleClose}
           onSelect={this.handleChange}
-          localizationTexts={this.props.localizationTexts}
-          {...this.props.modal}
+          localizationTexts={localizationTexts}
+          {...modalProps}
         />
       </div>
     );
