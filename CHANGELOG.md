@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 1.0.5
 * Fixed flexbox styles
 * Modify props passing to prevent passing of unnecessary props to react-select
 * Added componentWillReceiveProps lifecycle method to update state based on new props
