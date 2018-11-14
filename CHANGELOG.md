@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Fixed reference error in componentWillReceiveProps lifecycle function
 
 ## 1.0.5
 * Fixed flexbox styles
