@@ -4,6 +4,11 @@
 
 ## <next>
 
+## 1.0.8
+* Remove border radius from select
+* Add scroll bar to modal content
+* Show paging component on one line
+
 ## 1.0.7
 * Added functionality to disable component
 
