@@ -19,3 +19,15 @@
     }
   }
 }
+
+.combobox-with-search__modal-search-results {
+
+  .rt-tbody {
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+
+  .ReactTable .-pagination .-center {
+    flex-wrap: nowrap;
+  }
+}
