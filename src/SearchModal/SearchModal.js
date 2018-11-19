@@ -168,7 +168,7 @@ class SearchModal extends Component {
     const fieldObjects = Object.entries(searchFields).map(([name, value]) => ({ name, value }));
     const columns = fieldObjects.map(({ name }) => {
       return {
-        Header: localizationTexts[`field.${name}`],
+        Header: localizationTexts[`column.${name}`],
         accessor: name,
       };
     });

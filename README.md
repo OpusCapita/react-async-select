@@ -21,25 +21,26 @@ Also you need to configure sass loader, since all the styles are in sass format.
 * Add [SASS loader](https://github.com/webpack-contrib/sass-loader) to support importing of SASS styles.
 
 ### API
-| Prop name                       | Type     | Default                                            | Description                                    |
-| ------------------------------- | -------- | -------------------------------------------------- | ---------------------------------------------- |
-| value                           | any      |                                                    | The initially selected value                   |
-| onSelect                        | function | () => {}                                           | Selection callback function                    |
-| handleChange                    | function | Sets internal state and calls setState callback    | Handles internal state on selecting an item    |
-| loadOptions                     | function | () => Promise.resolve({ options: [] })             | Function for fetching options for the combobox |
-| disabled                        | boolean  | false                                              | Disables the component from user interaction   |
-| localizationTexts               | object   |                                                    | A dictionary with translated texts as values   |
-| localizationTexts.["searchBy"]  |          |                                                    | UI text prefix for the first search field      |
-| localizationTexts.["by"]        |          |                                                    | UI text prefix for other search fields         |
-| localizationTexts.["close"]     |          |                                                    | UI text for the Close-button                   |
-| localizationTexts.["select"]    |          |                                                    | UI text for the Select-button                  |
-| localizationTexts.["loading"]   |          |                                                    | UI text for the loading state                  |
-| localizationTexts.["noItems"]   |          |                                                    | UI text for an empty result set                |
-| localizationTexts.["field.XYZ"] |          |                                                    | UI text for the column with name "XYZ"         |
-| modal                           | object   |                                                    | Modal dialog specific props                    |
-| modal.title                     | string   | ''                                                 | Localized title of the modal                   |
-| modal.fields                    | [string] | []                                                 | List of fields to show as columns              |
-| modal.loadOptions               | function | () => Promise.resolve({ data: [], totalCount: 0 }) | Function for fetching entries to the table     |
+| Prop name                        | Type     | Default                                            | Description                                    |
+| -------------------------------- | -------- | -------------------------------------------------- | ---------------------------------------------- |
+| value                            | any      |                                                    | The initially selected value                   |
+| onSelect                         | function | () => {}                                           | Selection callback function                    |
+| handleChange                     | function | Sets internal state and calls setState callback    | Handles internal state on selecting an item    |
+| loadOptions                      | function | () => Promise.resolve({ options: [] })             | Function for fetching options for the combobox |
+| disabled                         | boolean  | false                                              | Disables the component from user interaction   |
+| localizationTexts                | object   |                                                    | A dictionary with translated texts as values   |
+| localizationTexts.["searchBy"]   |          |                                                    | UI text prefix for the first search field      |
+| localizationTexts.["by"]         |          |                                                    | UI text prefix for other search fields         |
+| localizationTexts.["close"]      |          |                                                    | UI text for the Close-button                   |
+| localizationTexts.["select"]     |          |                                                    | UI text for the Select-button                  |
+| localizationTexts.["loading"]    |          |                                                    | UI text for the loading state                  |
+| localizationTexts.["noItems"]    |          |                                                    | UI text for an empty result set                |
+| localizationTexts.["field.XYZ"]  |          |                                                    | Label for the search field with name "XYZ"     |
+| localizationTexts.["column.XYZ"] |          |                                                    | Header for the column with name "XYZ"          |
+| modal                            | object   |                                                    | Modal dialog specific props                    |
+| modal.title                      | string   | ''                                                 | Localized title of the modal                   |
+| modal.fields                     | [string] | []                                                 | List of fields to show as columns              |
+| modal.loadOptions                | function | () => Promise.resolve({ data: [], totalCount: 0 }) | Function for fetching entries to the table     |
 
 ### Code example
 ```jsx
@@ -59,6 +60,8 @@ export default class ReactView extends React.Component {
           noItems: 'No items',
           "field.fieldName1": 'my field',
           "field.fieldName2": 'another field'
+          "column.fieldName1": 'My field',
+          "column.fieldName2": 'Another field'
         }}
         disabled={false}
         value={'a'}
