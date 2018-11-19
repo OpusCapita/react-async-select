@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Add separate localization fields for column headers
 
 ## 1.0.8
 * Remove border radius from select
