@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 1.0.9
 * Add separate localization fields for column headers
 
 ## 1.0.8
