@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Provide more space for selected value text
 
 ## 1.0.9
 * Add separate localization fields for column headers
