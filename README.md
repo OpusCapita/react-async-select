@@ -21,26 +21,33 @@ Also you need to configure sass loader, since all the styles are in sass format.
 * Add [SASS loader](https://github.com/webpack-contrib/sass-loader) to support importing of SASS styles.
 
 ### API
-| Prop name                        | Type     | Default                                            | Description                                    |
-| -------------------------------- | -------- | -------------------------------------------------- | ---------------------------------------------- |
-| value                            | any      |                                                    | The initially selected value                   |
-| onSelect                         | function | () => {}                                           | Selection callback function                    |
-| handleChange                     | function | Sets internal state and calls setState callback    | Handles internal state on selecting an item    |
-| loadOptions                      | function | () => Promise.resolve({ options: [] })             | Function for fetching options for the combobox |
-| disabled                         | boolean  | false                                              | Disables the component from user interaction   |
-| localizationTexts                | object   |                                                    | A dictionary with translated texts as values   |
-| localizationTexts.["searchBy"]   |          |                                                    | UI text prefix for the first search field      |
-| localizationTexts.["by"]         |          |                                                    | UI text prefix for other search fields         |
-| localizationTexts.["close"]      |          |                                                    | UI text for the Close-button                   |
-| localizationTexts.["select"]     |          |                                                    | UI text for the Select-button                  |
-| localizationTexts.["loading"]    |          |                                                    | UI text for the loading state                  |
-| localizationTexts.["noItems"]    |          |                                                    | UI text for an empty result set                |
-| localizationTexts.["field.XYZ"]  |          |                                                    | Label for the search field with name "XYZ"     |
-| localizationTexts.["column.XYZ"] |          |                                                    | Header for the column with name "XYZ"          |
-| modal                            | object   |                                                    | Modal dialog specific props                    |
-| modal.title                      | string   | ''                                                 | Localized title of the modal                   |
-| modal.fields                     | [string] | []                                                 | List of fields to show as columns              |
-| modal.loadOptions                | function | () => Promise.resolve({ data: [], totalCount: 0 }) | Function for fetching entries to the table     |
+| Prop name                              | Type     | Default                                            | Description                                    |
+| -------------------------------------- | -------- | -------------------------------------------------- | ---------------------------------------------- |
+| value                                  | any      |                                                    | The initially selected value                   |
+| onSelect                               | function | () => {}                                           | Selection callback function                    |
+| handleChange                           | function | Sets internal state and calls setState callback    | Handles internal state on selecting an item    |
+| loadOptions                            | function | () => Promise.resolve({ options: [] })             | Function for fetching options for the combobox |
+| disabled                               | boolean  | false                                              | Disables the component from user interaction   |
+| localizationTexts                      | object   |                                                    | A dictionary with translated texts as values   |
+| localizationTexts.["searchBy"]         | string   |                                                    | UI text prefix for the first search field      |
+| localizationTexts.["by"]               | string   |                                                    | UI text prefix for other search fields         |
+| localizationTexts.["close"]            | string   |                                                    | UI text for the Close-button                   |
+| localizationTexts.["select"]           | string   |                                                    | UI text for the Select-button                  |
+| localizationTexts.["field.XYZ"]        | string   |                                                    | Label for the search field with name "XYZ"     |
+| localizationTexts.["column.XYZ"]       | string   |                                                    | Header for the column with name "XYZ"          |
+| localizationTexts.["loading"]          | string   | 'Loading...'                                       | Loading placeholder text                       |
+| localizationTexts.["noData"]           | string   | 'No rows found'                                    | Empty result set text                          |
+| localizationTexts.["previous"]         | string   | 'Previous'                                         | Paging text                                    |
+| localizationTexts.["next"]             | string   | 'Next'                                             | Paging text                                    |
+| localizationTexts.["page"]             | string   | 'Page'                                             | Paging text                                    |
+| localizationTexts.["of"]               | string   | 'of'                                               | Paging text                                    |
+| localizationTexts.["rows"]             | string   | 'rows'                                             | Paging text                                    |
+| localizationTexts.["pageJump"]         | string   | 'jump to page'                                     | Paging text                                    |
+| localizationTexts.["rowsSelector"]     | string   | 'rows per page'                                    | Paging text                                    |
+| modal                                  | object   |                                                    | Modal dialog specific props                    |
+| modal.title                            | string   | ''                                                 | Localized title of the modal                   |
+| modal.fields                           | [string] | []                                                 | List of fields to show as columns              |
+| modal.loadOptions                      | function | () => Promise.resolve({ data: [], totalCount: 0 }) | Function for fetching entries to the table     |
 
 ### Code example
 ```jsx
@@ -56,12 +63,19 @@ export default class ReactView extends React.Component {
           by: 'By',
           close: 'Close',
           select: 'Select',
-          loading: 'Loading...',
-          noItems: 'No items',
           "field.fieldName1": 'my field',
           "field.fieldName2": 'another field'
           "column.fieldName1": 'My field',
-          "column.fieldName2": 'Another field'
+          "column.fieldName2": 'Another field',
+          "previous": "PREV",
+          "next": "NEXT",
+          "loading": "LOADING",
+          "noData": "NODATA",
+          "page": "PAGE",
+          "of": "OF",
+          "rows": "ROWS",
+          "pageJump": "JUMP",
+          "rowsSelector": "RPP",
         }}
         disabled={false}
         value={'a'}
