@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Add possibility to localize paging component
 
 ## 1.0.10
 * Provide more space for selected value text

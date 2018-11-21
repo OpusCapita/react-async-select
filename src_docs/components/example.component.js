@@ -68,10 +68,17 @@ export default class ComponentView extends React.PureComponent {
               "field.description": "description",
               "column.code": "Code",
               "column.description": "Description",
-              "loading": "Loading...",
-              "noItems": "No items",
               "searchBy": "Search by",
-              "by": "by"
+              "by": "by",
+              "previous": "PREV",
+              "next": "NEXT",
+              "loading": "LOADING",
+              "noData": "NODATA",
+              "page": "PAGE",
+              "of": "OF",
+              "rows": "ROWS",
+              "pageJump": "JUMP",
+              "rowsSelector": "RPP",
             }}
             value={{ value: 'b', label: 'second char commonStr' }}
             loadOptions={comboLoadOptions}
@@ -97,7 +104,7 @@ export default class ComponentView extends React.PureComponent {
               "column.code": "Code",
               "column.description": "Description",
               "loading": "Loading...",
-              "noItems": "No items",
+              "noData": "No items",
               "searchBy": "Search by",
               "by": "by"
             }}
@@ -128,7 +135,7 @@ export default class ComponentView extends React.PureComponent {
               "column.code": "Code",
               "column.description": "Description",
               "loading": "Loading...",
-              "noItems": "No items",
+              "noData": "No items",
               "searchBy": "Search by",
               "by": "by"
             }}

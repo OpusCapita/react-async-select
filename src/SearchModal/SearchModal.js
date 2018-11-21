@@ -27,6 +27,18 @@ const DEFAULT_STATE_VALUES = {
   loading: true,
 };
 
+const DEFAULT_TEXTS = {
+  previous: 'Previous',
+  next: 'Next',
+  loading: 'Loading...',
+  noData: 'No rows found',
+  page: 'Page',
+  of: 'of',
+  rows: 'rows',
+  pageJump: 'jump to page',
+  rowsSelector: 'rows per page',
+};
+
 
 class SearchModal extends Component {
   constructor(props) {
@@ -174,6 +186,18 @@ class SearchModal extends Component {
     });
     const [firstField, ...otherFields] = fieldObjects;
 
+    const texts = {
+      previousText: localizationTexts.previous || DEFAULT_TEXTS.previous,
+      nextText: localizationTexts.next || DEFAULT_TEXTS.next,
+      loadingText: localizationTexts.loading || DEFAULT_TEXTS.loading,
+      noDataText: localizationTexts.noData || DEFAULT_TEXTS.noData,
+      pageText: localizationTexts.page || DEFAULT_TEXTS.page,
+      ofText: localizationTexts.of || DEFAULT_TEXTS.of,
+      rowsText: localizationTexts.rows || DEFAULT_TEXTS.rows,
+      pageJumpText: localizationTexts.pageJump || DEFAULT_TEXTS.pageJump,
+      rowsSelectorText: localizationTexts.rowsSelector || DEFAULT_TEXTS.rowsSelector,
+    };
+
     return (
       <Modal className="combobox-with-search__modal" show={this.props.showModal} onHide={this.handleClose}>
         <Modal.Header closeButton={true}>
@@ -205,11 +229,12 @@ class SearchModal extends Component {
           <div className="combobox-with-search__modal-search-results">
             <ReactTable
               {...REACT_TABLE_PROPS}
+              {...texts}
               data={searchResults}
               columns={columns}
               pageSize={pageSize}
               loadingText={localizationTexts.loading}
-              noDataText={loading ? '' : localizationTexts.noItems}
+              noDataText={loading ? '' : localizationTexts.noData}
               loading={loading}
               pages={pages}
               page={page}
