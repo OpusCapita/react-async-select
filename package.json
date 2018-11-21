@@ -1,7 +1,7 @@
 {
   "author": "OpusCapita (www.opuscapita.com)",
   "name": "@opuscapita/react-async-select",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "private": false,
   "license": "MIT",
   "description": "Dropdown component with advanced search modal",
