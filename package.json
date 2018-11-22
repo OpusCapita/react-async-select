@@ -99,7 +99,7 @@
   "dependencies": {
     "@opuscapita/oc-cm-common-styles": "2.1.0",
     "@opuscapita/react-icons": "3.0.3",
-    "@opuscapita/react-select": "1.0.0-oc.0",
+    "@opuscapita/react-select": "^2.0.9",
     "react-table": "6.8.6"
   },
   "repository": {

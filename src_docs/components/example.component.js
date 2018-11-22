@@ -45,7 +45,7 @@ const comboLoadOptions = inputValue => {
     value: option.code,
   }));
   return new Promise(resolve => {
-    setTimeout(() => resolve({ options: comboOptionShapes }), Math.random() * 3000);
+    setTimeout(() => resolve(comboOptionShapes), Math.random() * 3000);
   });
 };
 
@@ -139,7 +139,7 @@ export default class ComponentView extends React.PureComponent {
               "searchBy": "Search by",
               "by": "by"
             }}
-            disabled={true}
+            isDisabled={true}
             value={{ value: 'b', label: 'second char commonStr' }}
             loadOptions={comboLoadOptions}
             onSelect={value => console.log({ value })}

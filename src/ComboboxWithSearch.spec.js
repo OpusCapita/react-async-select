@@ -15,7 +15,7 @@ describe('ComboboxWithSearch', () => {
     const props = {
       value: '',
       onSelect: () => {},
-      loadOptions: () => Promise.resolve({ options: [{ label: 'a', value: 'a' }] }),
+      loadOptions: () => Promise.resolve([{ label: 'a', value: 'a' }]),
       localizationTexts: {
         "close": "Close",
         "select": "Select",

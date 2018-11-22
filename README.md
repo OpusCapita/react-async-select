@@ -26,8 +26,8 @@ Also you need to configure sass loader, since all the styles are in sass format.
 | value                                  | any      |                                                    | The initially selected value                   |
 | onSelect                               | function | () => {}                                           | Selection callback function                    |
 | handleChange                           | function | Sets internal state and calls setState callback    | Handles internal state on selecting an item    |
-| loadOptions                            | function | () => Promise.resolve({ options: [] })             | Function for fetching options for the combobox |
-| disabled                               | boolean  | false                                              | Disables the component from user interaction   |
+| loadOptions                            | function | () => Promise.resolve([])                          | Function for fetching options for the combobox |
+| isDisabled                             | boolean  | false                                              | Disables the component from user interaction   |
 | localizationTexts                      | object   |                                                    | A dictionary with translated texts as values   |
 | localizationTexts.["searchBy"]         | string   |                                                    | UI text prefix for the first search field      |
 | localizationTexts.["by"]               | string   |                                                    | UI text prefix for other search fields         |
@@ -77,15 +77,13 @@ export default class ReactView extends React.Component {
           "pageJump": "JUMP",
           "rowsSelector": "RPP",
         }}
-        disabled={false}
+        isDisabled={false}
         value={'a'}
         loadOptions={
-          () => Promise.resolve({
-            options: [
-              { label: 'a_DisplayValue', value: 'a' }
-              { label: 'b_DisplayValue', value: 'b' }
-            ]
-          })
+          () => Promise.resolve([
+            { label: 'a_DisplayValue', value: 'a' }
+            { label: 'b_DisplayValue', value: 'b' }
+          ])
         }
         onSelect={() => { /* Capture new selected value */ }}
         handleChange={({ value, setState, onSelect }) => {

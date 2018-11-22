@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Updated react-select to v2
 
 ## 1.0.11
 * Add possibility to localize paging component

@@ -1,38 +1,41 @@
 .combobox-with-search {
   display: flex;
   flex: 1 1 100%;
-  border: 1px solid #ccc;
 
   .combobox-with-search__combobox {
     display: flex;
     flex: 1 1 0;
 
-    .Select {
+    .opuscapita_react-select--2-0-0 {
       flex: 1 1 0;
 
-      .Select-control {
-        border-style: none;
-
-        .Select-value-label {
-          max-width: 100%;
-        }
-      }
-
-      .Select-arrow-zone {
-        display: none;
-      }
-      .Select-clear-zone {
-        padding-right: 3px;
+      .opuscapita_react-select__single-value {
+        max-width: 100%;
       }
     }
 
+    .opuscapita_react-select__clear-indicator {
+      display: none;
+      padding-right: 3px;
+    }
+
     .combobox-with-search__search-button {
-      display: flex;
+      display: none;
       flex: 0 0 auto;
       justify-content: center;
       align-items: center;
       padding: 3px;
       cursor: pointer;
+    }
+  }
+
+  .combobox-with-search__combobox:hover,
+  .combobox-with-search__combobox:focus {
+    .combobox-with-search__search-button {
+      display: flex;
+    }
+    .opuscapita_react-select__clear-indicator {
+      display: flex;
     }
   }
 }
