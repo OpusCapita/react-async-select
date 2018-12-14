@@ -1,8 +1,9 @@
 import React from 'react';
+import Checkbox from 'react-bootstrap/lib/Checkbox';
 import Example from '../../src/index';
 
 const options = [
-  { description: 'first number commonStr', code: 1 },
+  { description: 'first number commonStr', code: 1, disabled: true },
   { description: 'second number commonStr', code: 2 },
   { description: 'third number commonStr', code: 3 },
   { description: 'fourth number commonStr', code: 4 },
@@ -21,7 +22,9 @@ const options = [
 const modalLoadOptions = ({ searchFields, offset, limit }) => {
   const filteredOptions = options.filter(option => {
     return !Object.entries(searchFields).some(([field, value]) => {
-      return !option[field].toString().toLowerCase().includes(value.toLowerCase());
+      return !option[field].toString().toLowerCase().includes(
+        ((typeof value) === 'string') ? value.toLowerCase() : value
+      );
     });
   });
   const modalOptionShapes = filteredOptions.map(option => ({
@@ -41,8 +44,15 @@ const comboLoadOptions = inputValue => {
     return option.description.toLowerCase().includes(inputValue.toLowerCase());
   });
   const comboOptionShapes = filteredOptions.map(option => ({
-    label: option.description,
+    label: (
+      <span>
+        {option.description}
+        {' '}
+        {option.disabled ? (<span style={{ color: 'red' }}>(disabled)</span>) : null}
+      </span>
+    ),
     value: option.code,
+    disabled: option.disabled
   }));
   return new Promise(resolve => {
     setTimeout(() => resolve({ options: comboOptionShapes }), Math.random() * 3000);
@@ -120,6 +130,86 @@ export default class ComponentView extends React.PureComponent {
                 'code',
                 'description',
               ],
+              loadOptions: modalLoadOptions,
+            }}
+          />
+        </div>
+        <div>
+          <h4>Customized filter</h4>
+          <Example
+            localizationTexts={{
+              "close": "Close",
+              "select": "Select",
+              "field.code": "code",
+              "field.description": "description",
+              "column.code": "Code",
+              "column.description": "Description",
+              "loading": "Loading...",
+              "noData": "No items",
+              "searchBy": "Search by",
+              "by": "by"
+            }}
+            filters={{
+              code: ({ value, onChange }) => (
+                <Checkbox checked={value} onChange={() => onChange(!value)}>
+                  Customized filter
+                </Checkbox>
+              )
+            }}
+            renderers={{
+              description: ({ label, disabled }) => (
+                <span>
+                  {label}
+                  {disabled ? (<span style={{ color: 'red' }}> (disabled)</span>) : null}
+                </span>
+              )
+            }}
+            loadOptions={comboLoadOptions}
+            onSelect={value => console.log({ value })}
+            handleChange={({ value, setState, onSelect }) => {
+              onSelect(value);
+              return value;
+            }}
+            modal={{
+              title: 'Search entries',
+              fields: [
+                'code',
+                'description',
+              ],
+              loadOptions: modalLoadOptions,
+            }}
+          />
+        </div>
+        <div>
+          <h4>Search with disabled rows</h4>
+          <Example
+            ignoreAccents={false}
+            localizationTexts={{
+              "close": "Close",
+              "select": "Select",
+              "field.code": "code",
+              "field.description": "description",
+              "column.code": "Code",
+              "column.description": "Description",
+              "searchBy": "Search by",
+              "by": "by",
+              "previous": "PREV",
+              "next": "NEXT",
+              "loading": "LOADING",
+              "noData": "NODATA",
+              "page": "PAGE",
+              "of": "OF",
+              "rows": "ROWS",
+              "pageJump": "JUMP",
+              "rowsSelector": "RPP",
+            }}
+            value={{ value: 'b', label: 'second char commonStr' }}
+            loadOptions={comboLoadOptions}
+            onSelect={value => console.log('onSelect', { value })}
+            handleChange={({ value, onSelect }) => console.log('handleChange', value, onSelect)}
+            modal={{
+              title: 'Search entries',
+              fields: ['code', 'description'],
               loadOptions: modalLoadOptions,
             }}
           />
