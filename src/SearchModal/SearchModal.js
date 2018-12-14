@@ -129,9 +129,9 @@ class SearchModal extends Component {
         offset: page * pageSize,
         limit: pageSize,
       }).then(({
-                 data,
-                 totalCount,
-               }) => {
+        data,
+        totalCount,
+      }) => {
         if (token === this.fetchToken) {
           this.setState({
             searchResults: data.slice(0, pageSize),
