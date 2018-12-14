@@ -66,6 +66,8 @@ export class ComboboxWithSearch extends Component {
       handleChange, // eslint-disable-line no-unused-vars
       localizationTexts,
       disabled,
+      filters,
+      renderers,
       modal: modalProps,
       ...extraProps
     } = this.props;
@@ -96,6 +98,8 @@ export class ComboboxWithSearch extends Component {
           onClose={this.handleClose}
           onSelect={this.handleChange}
           localizationTexts={localizationTexts}
+          filters={filters}
+          renderers={renderers}
           {...modalProps}
         />
       </div>
@@ -108,6 +112,8 @@ ComboboxWithSearch.propTypes = {
     value: PropTypes.any,
     label: PropTypes.string,
   }),
+  filters: PropTypes.object,
+  renderers: PropTypes.object,
   loadOptions: PropTypes.func,
   onSelect: PropTypes.func,
   handleChange: PropTypes.func,
