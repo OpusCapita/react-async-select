@@ -4,6 +4,9 @@
 
 ## <next>
 
+## 1.1.11
+* Add support of custom filters, custom renderers for CELLs
+
 ## 1.0.11
 * Add possibility to localize paging component
 
