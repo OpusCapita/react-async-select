@@ -4,6 +4,13 @@
     flex-direction: row;
     flex-wrap: wrap;
 
+    .combobox-with-custom-search__modal-search-filter {
+      margin: 5px;
+      display: flex;
+      flex-direction: column;
+      flex: 1 0 auto;
+    }
+
     .combobox-with-search__modal-search-filter {
       margin: 5px;
       display: flex;
@@ -21,6 +28,10 @@
 }
 
 .combobox-with-search__modal-search-results {
+
+  .cell-value-disabled {
+    color: #ccc;
+  }
 
   .rt-tbody {
     max-height: 400px;

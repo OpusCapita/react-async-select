@@ -60,11 +60,14 @@ export class ComboboxWithSearch extends Component {
 
   render() {
     const {
+      value,
       loadOptions,
       onSelect, // eslint-disable-line no-unused-vars
       handleChange, // eslint-disable-line no-unused-vars
       localizationTexts,
       isDisabled,
+      filters,
+      renderers,
       modal: modalProps,
       ...extraProps
     } = this.props;
@@ -86,6 +89,7 @@ export class ComboboxWithSearch extends Component {
           <Select
             {...extraProps}
             isDisabled={isDisabled}
+            value={value}
             loadOptions={loadOptions}
             onChange={value => this.handleChange(value)}
             value={this.state.value}
@@ -97,6 +101,8 @@ export class ComboboxWithSearch extends Component {
           onClose={this.handleClose}
           onSelect={this.handleChange}
           localizationTexts={localizationTexts}
+          filters={filters}
+          renderers={renderers}
           {...modalProps}
         />
       </div>
@@ -109,6 +115,8 @@ ComboboxWithSearch.propTypes = {
     value: PropTypes.any,
     label: PropTypes.string,
   }),
+  filters: PropTypes.object,
+  renderers: PropTypes.object,
   loadOptions: PropTypes.func,
   onSelect: PropTypes.func,
   handleChange: PropTypes.func,

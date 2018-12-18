@@ -144,7 +144,15 @@ class SearchModal extends Component {
     });
   };
 
-  renderSearchField = ({ name: fieldName, value }, labelPrefix, key, localizationTexts) => {
+  renderSearchField = ({ name: fieldName, value }, labelPrefix, key, localizationTexts, filters) => {
+    if (filters && filters[fieldName]) {
+      const Filter = filters[fieldName];
+      return (
+        <div className='combobox-with-custom-search__modal-search-filter' key={`search-field-${key}`}>
+          <Filter value={value} onChange={value => this.setSearchValue(fieldName, value)}/>
+        </div>
+      );
+    }
     const translatedPrefix = localizationTexts[labelPrefix];
     const translatedFieldName = localizationTexts[`field.${fieldName}`];
     return (
@@ -156,9 +164,7 @@ class SearchModal extends Component {
           type="text"
           id={`search-field-${fieldName}`}
           value={value}
-          onInput={e => {
-            this.setSearchValue(fieldName, e.target.value)
-          }}
+          onInput={e => this.setSearchValue(fieldName, e.target.value)}
         />
       </div>
     );
@@ -175,13 +181,27 @@ class SearchModal extends Component {
       pageSize,
     } = this.state;
     const {
-      localizationTexts
+      localizationTexts,
+      filters,
+      renderers
     } = this.props;
     const fieldObjects = Object.entries(searchFields).map(([name, value]) => ({ name, value }));
     const columns = fieldObjects.map(({ name }) => {
       return {
         Header: localizationTexts[`column.${name}`],
         accessor: name,
+        Cell: props => {
+          const AdditionalComponent = renderers && renderers[props.column.id] || null;
+          return (
+            <div className={`cell-value cell-value-${props.original.disabled ? 'disabled' : ''}`}>
+              {
+                AdditionalComponent ?
+                  <AdditionalComponent {...props.original}/> :
+                  <span>{props.value}</span>
+              }
+            </div>
+          );
+        }
       };
     });
     const [firstField, ...otherFields] = fieldObjects;
@@ -202,7 +222,7 @@ class SearchModal extends Component {
       <Modal className="combobox-with-search__modal" show={this.props.showModal} onHide={this.handleClose}>
         <Modal.Header closeButton={true}>
           <h4>
-            { this.props.title }
+            {this.props.title}
           </h4>
         </Modal.Header>
         <Modal.Body>
@@ -212,7 +232,8 @@ class SearchModal extends Component {
                 firstField,
                 'searchBy',
                 `00-${firstField.name}`,
-                localizationTexts
+                localizationTexts,
+                filters
               )
             }
             {
@@ -221,7 +242,8 @@ class SearchModal extends Component {
                   field,
                   'by',
                   `${i}-${field.name}`,
-                  localizationTexts
+                  localizationTexts,
+                  filters
                 )
               )
             }
@@ -254,12 +276,12 @@ class SearchModal extends Component {
           <Button
             bsStyle="primary"
             onClick={this.handleSelect}
-            disabled={!selectedRow}
+            disabled={!selectedRow || selectedRow.original.disabled}
           >
-            { localizationTexts.select }
+            {localizationTexts.select}
           </Button>
           <Button bsStyle="default" onClick={this.handleClose}>
-            { localizationTexts.close }
+            {localizationTexts.close}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -270,6 +292,8 @@ class SearchModal extends Component {
 SearchModal.propTypes = {
   title: PropTypes.string,
   fields: PropTypes.array,
+  filters: PropTypes.object,
+  renderers: PropTypes.object,
   loadOptions: PropTypes.func,
   showModal: PropTypes.bool,
   onClose: PropTypes.func,
@@ -282,8 +306,10 @@ SearchModal.defaultProps = {
   fields: [],
   loadOptions: () => Promise.resolve({ data: [], totalCount: 0 }),
   showModal: false,
-  onClose: () => {},
-  onSelect: () => {},
+  onClose: () => {
+  },
+  onSelect: () => {
+  },
 };
 
 export default SearchModal;
