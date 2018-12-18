@@ -38,4 +38,8 @@
       display: flex;
     }
   }
+
+  .opuscapita_react-select__menu .opuscapita_react-select__option.opuscapita_react-select__option--is-disabled {
+    color: rgb(204, 204, 204);
+  }
 }
