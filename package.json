@@ -58,11 +58,11 @@
     "css-loader": "0.28.11",
     "enzyme": "3.3.0",
     "enzyme-adapter-react-16": "1.1.1",
-    "eslint": "4.19.1",
-    "eslint-config-opuscapita": "2.0.1",
-    "eslint-plugin-import": "2.12.0",
-    "eslint-plugin-jsx-a11y": "6.0.3",
-    "eslint-plugin-react": "7.9.1",
+    "eslint": "3.19.0",
+    "eslint-config-opuscapita": "1.0.4",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-react": "6.10.3",
     "file-loader": "1.1.11",
     "global-jsdom": "4.2.0",
     "html-webpack-plugin": "3.2.0",
@@ -99,7 +99,7 @@
   "dependencies": {
     "@opuscapita/oc-cm-common-styles": "2.1.0",
     "@opuscapita/react-icons": "3.0.3",
-    "@opuscapita/react-select": "1.0.0-oc.0",
+    "@opuscapita/react-select": "^2.0.9",
     "react-table": "6.8.6"
   },
   "repository": {

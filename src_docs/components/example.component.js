@@ -44,18 +44,12 @@ const comboLoadOptions = inputValue => {
     return option.description.toLowerCase().includes(inputValue.toLowerCase());
   });
   const comboOptionShapes = filteredOptions.map(option => ({
-    label: (
-      <span>
-        {option.description}
-        {' '}
-        {option.disabled ? (<span style={{ color: 'red' }}>(disabled)</span>) : null}
-      </span>
-    ),
+    label: option.description,
     value: option.code,
-    disabled: option.disabled
+    disabled: option.disabled,
   }));
   return new Promise(resolve => {
-    setTimeout(() => resolve({ options: comboOptionShapes }), Math.random() * 3000);
+    setTimeout(() => resolve(comboOptionShapes), Math.random() * 3000);
   });
 };
 
@@ -93,6 +87,7 @@ export default class ComponentView extends React.PureComponent {
             value={{ value: 'b', label: 'second char commonStr' }}
             loadOptions={comboLoadOptions}
             onSelect={value => console.log({ value })}
+            isOptionDisabled={option => option.disabled}
             modal={{
               title: 'Search entries',
               fields: [
@@ -229,7 +224,7 @@ export default class ComponentView extends React.PureComponent {
               "searchBy": "Search by",
               "by": "by"
             }}
-            disabled={true}
+            isDisabled={true}
             value={{ value: 'b', label: 'second char commonStr' }}
             loadOptions={comboLoadOptions}
             onSelect={value => console.log({ value })}

@@ -60,38 +60,39 @@ export class ComboboxWithSearch extends Component {
 
   render() {
     const {
-      value,
       loadOptions,
       onSelect, // eslint-disable-line no-unused-vars
       handleChange, // eslint-disable-line no-unused-vars
       localizationTexts,
-      disabled,
+      isDisabled,
       filters,
       renderers,
       modal: modalProps,
       ...extraProps
     } = this.props;
+    const DropdownIndicator = (props) => {
+      return !isDisabled && (
+        <div className="combobox-with-search__search-button">
+          <Icon
+            type="indicator"
+            name="search"
+            onClick={this.handleOpen}
+            {...ICON_SIZE}
+          />
+        </div>
+      );
+    };
     return (
       <div className="combobox-with-search">
         <div className="combobox-with-search__combobox">
           <Select
             {...extraProps}
-            disabled={disabled}
-            value={value}
+            isDisabled={isDisabled}
             loadOptions={loadOptions}
             onChange={value => this.handleChange(value)}
             value={this.state.value}
+            components={{ DropdownIndicator }}
           />
-          { !disabled &&
-            <div className="combobox-with-search__search-button">
-              <Icon
-                type="indicator"
-                name="search"
-                onClick={this.handleOpen}
-                {...ICON_SIZE}
-              />
-            </div>
-          }
         </div>
         <SearchModal
           showModal={this.state.showModal}
@@ -118,7 +119,7 @@ ComboboxWithSearch.propTypes = {
   onSelect: PropTypes.func,
   handleChange: PropTypes.func,
   localizationTexts: PropTypes.object,
-  disabled: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   modal: PropTypes.shape({
     title: PropTypes.string,
     fields: PropTypes.array,
@@ -130,14 +131,14 @@ ComboboxWithSearch.propTypes = {
 };
 
 ComboboxWithSearch.defaultProps = {
-  loadOptions: () => Promise.resolve({ options: [] }),
+  loadOptions: () => Promise.resolve([]),
   onSelect: () => {},
   handleChange: ({ value, setState, onSelect }) => {
     setState({ value });
     onSelect(value);
     return value;
   },
-  disabled: false,
+  isDisabled: false,
 };
 
 export default ComboboxWithSearch;

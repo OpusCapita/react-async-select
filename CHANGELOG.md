@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Updated react-select to v2
 
 ## 1.1.11
 * Add support of custom filters, custom renderers for CELLs
