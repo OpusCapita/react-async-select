@@ -60,7 +60,6 @@ export class ComboboxWithSearch extends Component {
 
   render() {
     const {
-      value,
       loadOptions,
       onSelect, // eslint-disable-line no-unused-vars
       handleChange, // eslint-disable-line no-unused-vars

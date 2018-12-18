@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { hot } from 'react-hot-loader';
+import { hot } from 'react-hot-loader';  // eslint-disable-line no-unused-vars
 import ExampleContainer from './containers/example.container';
 
 import './app.component.scss';
