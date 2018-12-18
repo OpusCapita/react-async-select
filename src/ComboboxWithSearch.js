@@ -89,7 +89,6 @@ export class ComboboxWithSearch extends Component {
           <Select
             {...extraProps}
             isDisabled={isDisabled}
-            value={value}
             loadOptions={loadOptions}
             onChange={value => this.handleChange(value)}
             value={this.state.value}

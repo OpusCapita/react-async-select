@@ -78,7 +78,7 @@ export default class ReactView extends React.Component {
           "rowsSelector": "RPP",
         }}
         isDisabled={false}
-        value={'a'}
+        value={{ value: 'a', label: 'The first letter in the alphabet, transformed with String.toLowerCase' }}
         loadOptions={
           () => Promise.resolve([
             { label: 'a_DisplayValue', value: 'a' }
