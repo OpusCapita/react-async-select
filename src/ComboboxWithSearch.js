@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from '@opuscapita/react-icons';
@@ -94,15 +93,18 @@ export class ComboboxWithSearch extends Component {
             components={{ DropdownIndicator }}
           />
         </div>
-        <SearchModal
-          showModal={this.state.showModal}
-          onClose={this.handleClose}
-          onSelect={this.handleChange}
-          localizationTexts={localizationTexts}
-          filters={filters}
-          renderers={renderers}
-          {...modalProps}
-        />
+        {
+          this.state.showModal ?
+            <SearchModal
+              onClose={this.handleClose}
+              onSelect={this.handleChange}
+              localizationTexts={localizationTexts}
+              filters={filters}
+              renderers={renderers}
+              {...modalProps}
+            /> :
+            null
+        }
       </div>
     );
   }
