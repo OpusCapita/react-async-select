@@ -5,27 +5,18 @@ import ReactTable from 'react-table';
 
 import './SearchModal.scss';
 
+
 const REACT_TABLE_PROPS = {
   showPagination: true,
-
   showPaginationTop: false,
   showPaginationBottom: true,
   showPageSizeOptions: true,
   pageSizeOptions: [3, 10, 20, 50, 100],
   defaultPageSize: 10,
-
   manual: true,
   sortable: false,
 };
 
-const DEFAULT_STATE_VALUES = {
-  searchResults: [],
-  page: 0,
-  pageSize: REACT_TABLE_PROPS.defaultPageSize,
-  pages: 1,
-  selectedRow: undefined,
-  loading: true,
-};
 
 const DEFAULT_TEXTS = {
   previous: 'Previous',
@@ -43,106 +34,87 @@ const DEFAULT_TEXTS = {
 class SearchModal extends Component {
   constructor(props) {
     super(props);
-
     const searchFields = Object.assign(
       {},
       ...props.fields.map(field => ({
         [field]: '',
       })),
     );
-    this.defaultSearchFields = {
-      ...searchFields,
-    };
-    this.fetchToken = 0;
     this.state = {
       searchFields,
-      ...DEFAULT_STATE_VALUES
+      searchResults: [],
+      page: 0,
+      pageSize: REACT_TABLE_PROPS.defaultPageSize,
+      pages: 1,
+      selectedRow: undefined,
+      loading: true,
     };
   }
+
+
+  componentWillMount() {
+    this.fetchData();
+  }
+
 
   setSearchValue = (fieldName, value) => {
     const { searchFields } = this.state;
-    const newSearchFields = {
-      ...searchFields,
-      [fieldName]: value,
-    };
-    this.setState({
-      searchFields: newSearchFields
-    });
     this.fetchData({
-      searchFields: newSearchFields,
       page: 0,
+      searchFields: { ...searchFields, [fieldName]: value }
     });
   };
 
-  selectRow = row => {
-    this.setState({
-      selectedRow: row,
-    });
-  }
+
+  handleSelectRow = row => this.setState({ selectedRow: row });
+
 
   handlePageChange = page => {
-    this.setState({
-      page
-    });
-  }
+    this.fetchData({ page });
+  };
 
-  handlePageSizeChange = (pageSize, page) => {
-    this.setState({
-      pageSize
-    });
-  }
+
+  handlePageSizeChange = (pageSize, page) => this.fetchData({ pageSize, page });
+
 
   handleSelect = () => {
-    const {
-      selectedRow,
-    } = this.state;
+    const { selectedRow } = this.state;
     this.props.onSelect(selectedRow && selectedRow.original);
     this.handleClose();
   };
 
-  handleClose = () => {
-    this.setState({
-      ...DEFAULT_STATE_VALUES,
-      searchFields: this.defaultSearchFields,
-    });
-    this.props.onClose();
-  };
 
-  handleFetchData = () => this.fetchData();
+  handleClose = () => this.props.onClose();
+
+
+  fetchToken = 0;
 
   fetchData = state => {
-    const resolvedState = {
-      ...this.state,
-      ...state
-    };
-    const {
-      page,
-      pageSize,
-      searchFields
-    } = resolvedState;
-    this.fetchToken = this.fetchToken + 1;
-    this.setState({ loading: true });
-    Promise.resolve(this.fetchToken).then(token => {
-      this.props.loadOptions({
-        searchFields,
-        offset: page * pageSize,
-        limit: pageSize,
-      }).then(({
-        data,
-        totalCount,
-      }) => {
-        if (token === this.fetchToken) {
-          this.setState({
-            searchResults: data.slice(0, pageSize),
-            page,
-            pages: Math.ceil(totalCount / pageSize),
-            loading: false,
-          });
-        }
-      });
-    });
+    const resolvedState = { ...this.state, ...state };
+    const { page, pageSize, searchFields } = resolvedState;
+
+    this.setState(
+      { ...resolvedState, loading: true },
+      () => {
+        this.fetchToken = this.fetchToken + 1;
+        const fetchToken = this.fetchToken;
+        this.props.loadOptions({
+          searchFields,
+          offset: page * pageSize,
+          limit: pageSize,
+        }).then(({ data, totalCount, }) => {
+          if (fetchToken === this.fetchToken) {
+            this.setState({
+              searchResults: data.slice(0, pageSize),
+              pages: Math.ceil(totalCount / pageSize),
+              loading: false
+            });
+          }
+        })
+      }
+    );
   };
+
 
   renderSearchField = ({ name: fieldName, value }, labelPrefix, key, localizationTexts, filters) => {
     if (filters && filters[fieldName]) {
@@ -169,6 +141,7 @@ class SearchModal extends Component {
       </div>
     );
   };
+
 
   render() {
     const {
@@ -219,7 +192,7 @@ class SearchModal extends Component {
     };
 
     return (
-      <Modal className="combobox-with-search__modal" show={this.props.showModal} onHide={this.handleClose}>
+      <Modal className="combobox-with-search__modal" show={true} onHide={this.handleClose}>
         <Modal.Header closeButton={true}>
           <h4>
             {this.props.title}
@@ -260,12 +233,11 @@ class SearchModal extends Component {
               loading={loading}
               pages={pages}
               page={page}
-              onFetchData={this.handleFetchData}
               onPageChange={this.handlePageChange}
               onPageSizeChange={this.handlePageSizeChange}
               getTrProps={
                 (state, row) => ({
-                  onClick: () => this.selectRow(row),
+                  onClick: () => this.handleSelectRow(row),
                   className: selectedRow && row && selectedRow.index === row.index ? "selected" : ""
                 })
               }
@@ -289,27 +261,28 @@ class SearchModal extends Component {
   }
 }
 
+
 SearchModal.propTypes = {
   title: PropTypes.string,
   fields: PropTypes.array,
   filters: PropTypes.object,
   renderers: PropTypes.object,
   loadOptions: PropTypes.func,
-  showModal: PropTypes.bool,
   onClose: PropTypes.func,
   onSelect: PropTypes.func,
   localizationTexts: PropTypes.object,
 };
 
+
 SearchModal.defaultProps = {
   title: '',
   fields: [],
   loadOptions: () => Promise.resolve({ data: [], totalCount: 0 }),
-  showModal: false,
   onClose: () => {
   },
   onSelect: () => {
   },
 };
+
 
 export default SearchModal;
