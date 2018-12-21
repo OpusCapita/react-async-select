@@ -117,6 +117,7 @@ export default class ComponentView extends React.PureComponent {
             onSelect={value => console.log({ value })}
             handleChange={({ value, setState, onSelect }) => {
               onSelect(value);
+              setState({ value: null });
               return value;
             }}
             modal={{
