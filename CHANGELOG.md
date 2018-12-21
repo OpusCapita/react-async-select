@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Update example.component.jsx to have a working custom changeHandler
 
 ## 2.0.1
 * Fixed double requesting on page switch
