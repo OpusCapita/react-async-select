@@ -4,6 +4,9 @@
 
 ## <next>
 
+## 2.0.1
+* Fixed double requesting on page switch
+
 ## 2.0.0
 * Updated react-select to v2
 
