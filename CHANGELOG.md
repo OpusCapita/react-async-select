@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 2.1.0
 * Added default filtering options
 * Update example.component.jsx to have a working custom changeHandler
 
