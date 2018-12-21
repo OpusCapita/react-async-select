@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from '@opuscapita/react-icons';
 import { Async as Select } from '@opuscapita/react-select';
+import { createFilter } from 'react-select';
 
 import SearchModal from './SearchModal';
 
@@ -91,6 +92,11 @@ export class ComboboxWithSearch extends Component {
             onChange={value => this.handleChange(value)}
             value={this.state.value}
             components={{ DropdownIndicator }}
+            filterOption={createFilter({
+              ignoreCase: true,
+              ignoreAccents: false,
+              matchFrom: 'any',
+            })}
           />
         </div>
         {
