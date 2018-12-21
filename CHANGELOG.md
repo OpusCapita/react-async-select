@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Added default filtering options
 
 ## 2.0.1
 * Fixed double requesting on page switch
