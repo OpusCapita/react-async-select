@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Added localization for the dropdown "No options" text
 
 ## 2.1.0
 * Added default filtering options

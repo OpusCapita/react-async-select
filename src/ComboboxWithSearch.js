@@ -92,6 +92,7 @@ export class ComboboxWithSearch extends Component {
             onChange={value => this.handleChange(value)}
             value={this.state.value}
             components={{ DropdownIndicator }}
+            noOptionsMessage={() => (localizationTexts.noItems || '--')}
             filterOption={createFilter({
               ignoreCase: true,
               ignoreAccents: false,

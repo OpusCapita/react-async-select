@@ -74,6 +74,7 @@ export default class ComponentView extends React.PureComponent {
               "column.description": "Description",
               "searchBy": "Search by",
               "by": "by",
+              "noItems": "No items",
               "previous": "PREV",
               "next": "NEXT",
               "loading": "LOADING",

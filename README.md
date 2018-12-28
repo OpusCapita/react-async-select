@@ -36,7 +36,8 @@ Also you need to configure sass loader, since all the styles are in sass format.
 | localizationTexts.["field.XYZ"]        | string   |                                                    | Label for the search field with name "XYZ"     |
 | localizationTexts.["column.XYZ"]       | string   |                                                    | Header for the column with name "XYZ"          |
 | localizationTexts.["loading"]          | string   | 'Loading...'                                       | Loading placeholder text                       |
-| localizationTexts.["noData"]           | string   | 'No rows found'                                    | Empty result set text                          |
+| localizationTexts.["noItems"]          | string   | '--'                                               | Empty result set text for the dropdown         |
+| localizationTexts.["noData"]           | string   | 'No rows found'                                    | Empty result set text for the modal            |
 | localizationTexts.["previous"]         | string   | 'Previous'                                         | Paging text                                    |
 | localizationTexts.["next"]             | string   | 'Next'                                             | Paging text                                    |
 | localizationTexts.["page"]             | string   | 'Page'                                             | Paging text                                    |
