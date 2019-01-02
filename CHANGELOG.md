@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Remove empty lines from modal's result table
 
 ## 2.1.0
 * Added default filtering options
