@@ -5,6 +5,7 @@
 ## <next>
 * Added localization for the dropdown "No options" text
 * Remove empty lines from modal's result table
+* Fixed overflow styles
 
 ## 2.1.0
 * Added default filtering options
