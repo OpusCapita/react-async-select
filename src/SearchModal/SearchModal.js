@@ -227,7 +227,7 @@ class SearchModal extends Component {
               {...texts}
               data={searchResults}
               columns={columns}
-              pageSize={pageSize}
+              pageSize={Math.min(pageSize, searchResults.length)}
               loadingText={localizationTexts.loading}
               noDataText={loading ? '' : localizationTexts.noData}
               loading={loading}
