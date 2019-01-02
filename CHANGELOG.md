@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Added localization for the dropdown "No options" text
 * Remove empty lines from modal's result table
 
 ## 2.1.0
