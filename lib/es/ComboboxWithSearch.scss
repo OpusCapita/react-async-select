@@ -10,8 +10,12 @@
       flex: 1 1 0;
 
       .opuscapita_react-select__single-value {
-        max-width: 100%;
+        overflow: hidden;
       }
+    }
+
+    .opuscapita_react-select__menu {
+      overflow: visible;
     }
 
     .opuscapita_react-select__clear-indicator {
