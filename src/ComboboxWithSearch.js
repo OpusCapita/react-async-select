@@ -93,6 +93,7 @@ export class ComboboxWithSearch extends Component {
             value={this.state.value}
             components={{ DropdownIndicator }}
             noOptionsMessage={() => (localizationTexts.noItems || '--')}
+            loadingMessage={() => (localizationTexts.loading || 'Loading...')}
             filterOption={createFilter({
               ignoreCase: true,
               ignoreAccents: false,
