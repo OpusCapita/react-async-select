@@ -4,6 +4,10 @@
 
 ## <next>
 
+## 2.2.1
+* Fixed "loading" translation in react-select
+* Fixed pagination bug in react-table
+
 ## 2.2.0
 * Added localization for the dropdown "No options" text
 * Remove empty lines from modal's result table
