@@ -41,4 +41,8 @@
   .ReactTable .-pagination .-center {
     flex-wrap: nowrap;
   }
+
+  .hidden {
+    display: none !important;
+  }
 }

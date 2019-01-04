@@ -11,7 +11,7 @@ const REACT_TABLE_PROPS = {
   showPaginationTop: false,
   showPaginationBottom: true,
   showPageSizeOptions: true,
-  pageSizeOptions: [3, 10, 20, 50, 100],
+  pageSizeOptions: [10, 20, 50, 100],
   defaultPageSize: 10,
   manual: true,
   sortable: false,
@@ -227,7 +227,7 @@ class SearchModal extends Component {
               {...texts}
               data={searchResults}
               columns={columns}
-              pageSize={Math.min(pageSize, searchResults.length)}
+              pageSize={pageSize}
               loadingText={localizationTexts.loading}
               noDataText={loading ? '' : localizationTexts.noData}
               loading={loading}
@@ -235,11 +235,24 @@ class SearchModal extends Component {
               page={page}
               onPageChange={this.handlePageChange}
               onPageSizeChange={this.handlePageSizeChange}
+              getTrGroupProps={
+                (state, row) => {
+                  const className = !row ? "hidden" : "";
+                  return {
+                    className,
+                  };
+                }
+              }
               getTrProps={
-                (state, row) => ({
-                  onClick: () => this.handleSelectRow(row),
-                  className: selectedRow && row && selectedRow.index === row.index ? "selected" : ""
-                })
+                (state, row) => {
+                  const onClick = () => this.handleSelectRow(row);
+                  const className = selectedRow && row && selectedRow.index === row.index ? "selected" : "";
+
+                  return {
+                    onClick,
+                    className,
+                  };
+                }
               }
             />
           </div>
