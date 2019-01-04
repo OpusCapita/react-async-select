@@ -237,7 +237,6 @@ class SearchModal extends Component {
               onPageSizeChange={this.handlePageSizeChange}
               getTrGroupProps={
                 (state, row) => {
-                  console.log({ row });
                   const className = !row ? "hidden" : "";
                   return {
                     className,
@@ -247,7 +246,7 @@ class SearchModal extends Component {
               getTrProps={
                 (state, row) => {
                   const onClick = () => this.handleSelectRow(row);
-                  const className = selectedRow && row && selectedRow.index === row.index ? "selected" : "null";
+                  const className = selectedRow && row && selectedRow.index === row.index ? "selected" : "";
 
                   return {
                     onClick,
