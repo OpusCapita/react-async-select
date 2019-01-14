@@ -1,0 +1,49 @@
+.combobox-with-search {
+  display: flex;
+  flex: 1 1 100%;
+
+  .combobox-with-search__combobox {
+    display: flex;
+    flex: 1 1 0;
+
+    .opuscapita_react-select--2-0-0 {
+      flex: 1 1 0;
+
+      .opuscapita_react-select__single-value {
+        overflow: hidden;
+      }
+    }
+
+    .opuscapita_react-select__menu {
+      overflow: visible;
+    }
+
+    .opuscapita_react-select__clear-indicator {
+      display: none;
+      padding-right: 3px;
+    }
+
+    .combobox-with-search__search-button {
+      display: none;
+      flex: 0 0 auto;
+      justify-content: center;
+      align-items: center;
+      padding: 3px;
+      cursor: pointer;
+    }
+  }
+
+  .combobox-with-search__combobox:hover,
+  .combobox-with-search__combobox:focus {
+    .combobox-with-search__search-button {
+      display: flex;
+    }
+    .opuscapita_react-select__clear-indicator {
+      display: flex;
+    }
+  }
+
+  .opuscapita_react-select__menu .opuscapita_react-select__option.opuscapita_react-select__option--is-disabled {
+    color: rgb(204, 204, 204);
+  }
+}
