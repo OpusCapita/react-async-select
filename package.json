@@ -101,7 +101,8 @@
     "@opuscapita/react-icons": "3.0.3",
     "@opuscapita/react-select": "^2.0.9",
     "react-select": "2.0.0",
-    "react-table": "6.8.6"
+    "react-table": "6.8.6",
+    "tether": "1.4.5"
   },
   "repository": {
     "type": "git",

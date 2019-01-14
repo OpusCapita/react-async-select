@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Modified dropdown component to apply tethering on dropdown menu
 
 ## 2.2.1
 * Fixed "loading" translation in react-select
