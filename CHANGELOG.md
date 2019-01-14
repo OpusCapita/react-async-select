@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 2.3.0
 * Modified dropdown component to apply tethering on dropdown menu
 
 ## 2.2.1
