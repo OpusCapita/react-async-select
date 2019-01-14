@@ -4,7 +4,7 @@ import { Icon } from '@opuscapita/react-icons';
 import { Async as Select } from '@opuscapita/react-select';
 import { createFilter } from 'react-select';
 
-import SearchModal from './SearchModal';
+import SearchModal from '../SearchModal';
 
 import 'react-table/react-table.css'
 import './ComboboxWithSearch.scss';
@@ -15,7 +15,7 @@ const ICON_SIZE = {
 };
 
 const valueBecomesDefinedOrIsCleared = (nextProps, currentProps) => !!nextProps.value !== !!currentProps.value;
-const OptionValueChanges = (nextProps, currentProps) => nextProps.value && currentProps.value &&
+const optionValueChanges = (nextProps, currentProps) => nextProps.value && currentProps.value &&
   nextProps.value.value !== currentProps.value.value;
 
 export class ComboboxWithSearch extends Component {
@@ -31,7 +31,7 @@ export class ComboboxWithSearch extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (valueBecomesDefinedOrIsCleared(nextProps, this.props) || OptionValueChanges(nextProps, this.props)) {
+    if (valueBecomesDefinedOrIsCleared(nextProps, this.props) || optionValueChanges(nextProps, this.props)) {
       this.setState({
         value: nextProps.value,
       });

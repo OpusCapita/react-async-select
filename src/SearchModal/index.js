@@ -1,1 +1,1 @@
-export { default } from './SearchModal.js';
+export { default } from './SearchModal';
