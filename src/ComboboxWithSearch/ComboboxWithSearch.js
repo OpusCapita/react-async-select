@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { Icon } from '@opuscapita/react-icons';
 import { Async as Select } from '@opuscapita/react-select';
 import { createFilter } from 'react-select';
 
+import FloatingMenu from './FloatingMenu';
 import SearchModal from '../SearchModal';
 
 import 'react-table/react-table.css'
@@ -28,6 +30,10 @@ export class ComboboxWithSearch extends Component {
       value,
       showModal: false,
     };
+  }
+
+  componentDidMount() {
+    this.dropdownFieldNode = ReactDOM.findDOMNode(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -82,6 +88,13 @@ export class ComboboxWithSearch extends Component {
         </div>
       );
     };
+    const Menu = props => {
+      const newProps = {
+        ...props,
+        dropdownFieldNode: this.dropdownFieldNode,
+      };
+      return FloatingMenu(newProps);
+    };
     return (
       <div className="combobox-with-search">
         <div className="combobox-with-search__combobox">
@@ -91,7 +104,10 @@ export class ComboboxWithSearch extends Component {
             loadOptions={loadOptions}
             onChange={value => this.handleChange(value)}
             value={this.state.value}
-            components={{ DropdownIndicator }}
+            components={{
+              DropdownIndicator,
+              Menu,
+            }}
             noOptionsMessage={() => (localizationTexts.noItems || '--')}
             loadingMessage={() => (localizationTexts.loading || 'Loading...')}
             filterOption={createFilter({
