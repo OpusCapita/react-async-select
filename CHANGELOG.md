@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 2.3.1
 * Fixed destroy -call on an uninitialized Tether component
 
 ## 2.3.0
