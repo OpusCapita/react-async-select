@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Fixed destroy -call on an uninitialized Tether component
 
 ## 2.3.0
 * Modified dropdown component to apply tethering on dropdown menu

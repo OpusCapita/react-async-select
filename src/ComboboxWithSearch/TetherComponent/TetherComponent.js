@@ -61,7 +61,9 @@ export default class TetherComponent extends React.PureComponent {
 
   destroyTetheredContent() {
     ReactDOM.unmountComponentAtNode(this.tetherContainer);
-    this.tether.destroy();
+    if (this.tether) {
+      this.tether.destroy();
+    }
     document.body.removeChild(this.tetherContainer);
   }
 
