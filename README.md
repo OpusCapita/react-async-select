@@ -49,6 +49,9 @@ Also you need to configure sass loader, since all the styles are in sass format.
 | modal.title                            | string   | ''                                                 | Localized title of the modal                   |
 | modal.fields                           | [string] | []                                                 | List of fields to show as columns              |
 | modal.loadOptions                      | function | () => Promise.resolve({ data: [], totalCount: 0 }) | Function for fetching entries to the table     |
+| modal.components                       | object   | {}                                                 | A collection of custom components              |
+| modal.components.LeftPanel             | element  | null                                               | Custom component for left side panel           |
+| modal.components.RightPanel            | element  | null                                               | Custom component for right side panel          |
 
 ### Code example
 ```jsx
@@ -113,6 +116,10 @@ export default class ReactView extends React.Component {
             ],
             totalCount: 0
           }),
+          components: {
+            LeftPanel: ({ selectedRow }) => (<div></div>),
+            RightPanel: ({ selectedRow }) => (<div></div>),
+          }
         }}
       />
     );
