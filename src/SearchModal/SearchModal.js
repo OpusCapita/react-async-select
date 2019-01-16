@@ -156,7 +156,8 @@ class SearchModal extends Component {
     const {
       localizationTexts,
       filters,
-      renderers
+      renderers,
+      components: { LeftPanel, RightPanel },
     } = this.props;
     const fieldObjects = Object.entries(searchFields).map(([name, value]) => ({ name, value }));
     const columns = fieldObjects.map(({ name }) => {
@@ -193,82 +194,100 @@ class SearchModal extends Component {
 
     return (
       <Modal className="combobox-with-search__modal" show={true} onHide={this.handleClose}>
-        <Modal.Header closeButton={true}>
-          <h4>
-            {this.props.title}
-          </h4>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="combobox-with-search__modal-search-filters">
-            {
-              firstField && this.renderSearchField(
-                firstField,
-                'searchBy',
-                `00-${firstField.name}`,
-                localizationTexts,
-                filters
-              )
-            }
-            {
-              otherFields.map(
-                (field, i) => this.renderSearchField(
-                  field,
-                  'by',
-                  `${i}-${field.name}`,
-                  localizationTexts,
-                  filters
-                )
-              )
-            }
-          </div>
-          <div className="combobox-with-search__modal-search-results">
-            <ReactTable
-              {...REACT_TABLE_PROPS}
-              {...texts}
-              data={searchResults}
-              columns={columns}
-              pageSize={pageSize}
-              loadingText={localizationTexts.loading}
-              noDataText={loading ? '' : localizationTexts.noData}
-              loading={loading}
-              pages={pages}
-              page={page}
-              onPageChange={this.handlePageChange}
-              onPageSizeChange={this.handlePageSizeChange}
-              getTrGroupProps={
-                (state, row) => {
-                  const className = !row ? "hidden" : "";
-                  return {
-                    className,
-                  };
+        <div className="combobox-with-search__modal-panels">
+          {
+            LeftPanel && (
+              <div className="combobox-with-search__modal-panel combobox-with-search__modal-panel--left">
+                { LeftPanel({ selectedRow }) }
+              </div>
+            )
+          }
+          <div className="combobox-with-search__modal-panel combobox-with-search__modal-panel--center">
+            <Modal.Header closeButton={true}>
+              <h4>
+                {this.props.title}
+              </h4>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="combobox-with-search__modal-search-filters">
+                {
+                  firstField && this.renderSearchField(
+                    firstField,
+                    'searchBy',
+                    `00-${firstField.name}`,
+                    localizationTexts,
+                    filters
+                  )
                 }
-              }
-              getTrProps={
-                (state, row) => {
-                  const onClick = () => this.handleSelectRow(row);
-                  const className = selectedRow && row && selectedRow.index === row.index ? "selected" : "";
+                {
+                  otherFields.map(
+                    (field, i) => this.renderSearchField(
+                      field,
+                      'by',
+                      `${i}-${field.name}`,
+                      localizationTexts,
+                      filters
+                    )
+                  )
+                }
+              </div>
+              <div className="combobox-with-search__modal-search-results">
+                <ReactTable
+                  {...REACT_TABLE_PROPS}
+                  {...texts}
+                  data={searchResults}
+                  columns={columns}
+                  pageSize={pageSize}
+                  loadingText={localizationTexts.loading}
+                  noDataText={loading ? '' : localizationTexts.noData}
+                  loading={loading}
+                  pages={pages}
+                  page={page}
+                  onPageChange={this.handlePageChange}
+                  onPageSizeChange={this.handlePageSizeChange}
+                  getTrGroupProps={
+                    (state, row) => {
+                      const className = !row ? "hidden" : "";
+                      return {
+                        className,
+                      };
+                    }
+                  }
+                  getTrProps={
+                    (state, row) => {
+                      const onClick = () => this.handleSelectRow(row);
+                      const className = selectedRow && row && selectedRow.index === row.index ? "selected" : "";
 
-                  return {
-                    onClick,
-                    className,
-                  };
-                }
-              }
-            />
+                      return {
+                        onClick,
+                        className,
+                      };
+                    }
+                  }
+                />
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                bsStyle="primary"
+                onClick={this.handleSelect}
+                disabled={!selectedRow || selectedRow.original.disabled}
+              >
+                {localizationTexts.select}
+              </Button>
+              <Button bsStyle="default" onClick={this.handleClose}>
+                {localizationTexts.close}
+              </Button>
+            </Modal.Footer>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            bsStyle="primary"
-            onClick={this.handleSelect}
-            disabled={!selectedRow || selectedRow.original.disabled}
-          >
-            {localizationTexts.select}
-          </Button>
-          <Button bsStyle="default" onClick={this.handleClose}>
-            {localizationTexts.close}
-          </Button>
-        </Modal.Footer>
+          {
+            RightPanel && (
+              <div className="combobox-with-search__modal-panel combobox-with-search__modal-panel--right">
+                { RightPanel({ selectedRow }) }
+              </div>
+            )
+          }
+        </div>
       </Modal>
     );
   }
@@ -284,6 +303,7 @@ SearchModal.propTypes = {
   onClose: PropTypes.func,
   onSelect: PropTypes.func,
   localizationTexts: PropTypes.object,
+  components: PropTypes.object.isRequired,
 };
 
 
@@ -291,10 +311,9 @@ SearchModal.defaultProps = {
   title: '',
   fields: [],
   loadOptions: () => Promise.resolve({ data: [], totalCount: 0 }),
-  onClose: () => {
-  },
-  onSelect: () => {
-  },
+  onClose: () => {},
+  onSelect: () => {},
+  components: {},
 };
 
 

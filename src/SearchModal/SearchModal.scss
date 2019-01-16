@@ -1,4 +1,21 @@
 .combobox-with-search__modal {
+  .combobox-with-search__modal-panels {
+    display: flex;
+    flex-direction: row;
+
+    .combobox-with-search__modal-panel {
+      flex: 1 1 0;
+    }
+
+    .combobox-with-search__modal-panel--left {
+      border-right: 1px solid #e5e5e5;
+    }
+
+    .combobox-with-search__modal-panel--right {
+      border-left: 1px solid #e5e5e5;
+    }
+  }
+
   .combobox-with-search__modal-search-filters {
     display: flex;
     flex-direction: row;
