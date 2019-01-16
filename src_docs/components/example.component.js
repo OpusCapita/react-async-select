@@ -1,6 +1,6 @@
 import React from 'react';
 import Checkbox from 'react-bootstrap/lib/Checkbox';
-import Example from '../../src/index';
+import Select from '../../src/index';
 
 const options = [
   { description: 'first number commonStr', code: 1, disabled: true },
@@ -64,7 +64,7 @@ export default class ComponentView extends React.PureComponent {
       <div style={{ padding: '20px' }}>
         <div>
           <h4>Simple component</h4>
-          <Example
+          <Select
             localizationTexts={{
               "close": "Close",
               "select": "Select",
@@ -101,7 +101,7 @@ export default class ComponentView extends React.PureComponent {
         </div>
         <div>
           <h4>Customized change handler</h4>
-          <Example
+          <Select
             localizationTexts={{
               "close": "Close",
               "select": "Select",
@@ -133,7 +133,7 @@ export default class ComponentView extends React.PureComponent {
         </div>
         <div>
           <h4>Customized filter</h4>
-          <Example
+          <Select
             localizationTexts={{
               "close": "Close",
               "select": "Select",
@@ -179,7 +179,7 @@ export default class ComponentView extends React.PureComponent {
         </div>
         <div>
           <h4>Search with disabled rows</h4>
-          <Example
+          <Select
             ignoreAccents={false}
             localizationTexts={{
               "close": "Close",
@@ -213,7 +213,7 @@ export default class ComponentView extends React.PureComponent {
         </div>
         <div>
           <h4>Disabled component</h4>
-          <Example
+          <Select
             localizationTexts={{
               "close": "Close",
               "select": "Select",
