@@ -31,6 +31,11 @@ const DEFAULT_TEXTS = {
 };
 
 
+const getDialogClassName = ({ panels }) => {
+  const panelCount = panels.filter(val => !!val).length + 1;
+  return `combobox-with-search__modal-with-${panelCount}-panels`;
+};
+
 class SearchModal extends Component {
   constructor(props) {
     super(props);
@@ -156,7 +161,8 @@ class SearchModal extends Component {
     const {
       localizationTexts,
       filters,
-      renderers
+      renderers,
+      components: { LeftPanel, RightPanel },
     } = this.props;
     const fieldObjects = Object.entries(searchFields).map(([name, value]) => ({ name, value }));
     const columns = fieldObjects.map(({ name }) => {
@@ -191,84 +197,110 @@ class SearchModal extends Component {
       rowsSelectorText: localizationTexts.rowsSelector || DEFAULT_TEXTS.rowsSelector,
     };
 
-    return (
-      <Modal className="combobox-with-search__modal" show={true} onHide={this.handleClose}>
-        <Modal.Header closeButton={true}>
-          <h4>
-            {this.props.title}
-          </h4>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="combobox-with-search__modal-search-filters">
-            {
-              firstField && this.renderSearchField(
-                firstField,
-                'searchBy',
-                `00-${firstField.name}`,
-                localizationTexts,
-                filters
-              )
-            }
-            {
-              otherFields.map(
-                (field, i) => this.renderSearchField(
-                  field,
-                  'by',
-                  `${i}-${field.name}`,
-                  localizationTexts,
-                  filters
-                )
-              )
-            }
-          </div>
-          <div className="combobox-with-search__modal-search-results">
-            <ReactTable
-              {...REACT_TABLE_PROPS}
-              {...texts}
-              data={searchResults}
-              columns={columns}
-              pageSize={pageSize}
-              loadingText={localizationTexts.loading}
-              noDataText={loading ? '' : localizationTexts.noData}
-              loading={loading}
-              pages={pages}
-              page={page}
-              onPageChange={this.handlePageChange}
-              onPageSizeChange={this.handlePageSizeChange}
-              getTrGroupProps={
-                (state, row) => {
-                  const className = !row ? "hidden" : "";
-                  return {
-                    className,
-                  };
-                }
-              }
-              getTrProps={
-                (state, row) => {
-                  const onClick = () => this.handleSelectRow(row);
-                  const className = selectedRow && row && selectedRow.index === row.index ? "selected" : "";
+    const leftPanel = LeftPanel && LeftPanel({ selectedRow });
+    const rightPanel = RightPanel && RightPanel({ selectedRow });
 
-                  return {
-                    onClick,
-                    className,
-                  };
+    return (
+      <Modal
+        className="combobox-with-search__modal"
+        dialogClassName={getDialogClassName({ panels: [leftPanel, rightPanel] })}
+        show={true}
+        onHide={this.handleClose}
+      >
+        <div className="combobox-with-search__modal-panels">
+          {
+            leftPanel && (
+              <div className="combobox-with-search__modal-panel combobox-with-search__modal-panel--left">
+                { leftPanel }
+              </div>
+            )
+          }
+          <div className="combobox-with-search__modal-panel combobox-with-search__modal-panel--center">
+            <Modal.Header closeButton={true}>
+              <h4>
+                {this.props.title}
+              </h4>
+            </Modal.Header>
+            <Modal.Body>
+              <div className="combobox-with-search__modal-search-filters">
+                {
+                  firstField && this.renderSearchField(
+                    firstField,
+                    'searchBy',
+                    `00-${firstField.name}`,
+                    localizationTexts,
+                    filters
+                  )
                 }
-              }
-            />
+                {
+                  otherFields.map(
+                    (field, i) => this.renderSearchField(
+                      field,
+                      'by',
+                      `${i}-${field.name}`,
+                      localizationTexts,
+                      filters
+                    )
+                  )
+                }
+              </div>
+              <div className="combobox-with-search__modal-search-results">
+                <ReactTable
+                  {...REACT_TABLE_PROPS}
+                  {...texts}
+                  data={searchResults}
+                  columns={columns}
+                  pageSize={pageSize}
+                  loadingText={localizationTexts.loading}
+                  noDataText={loading ? '' : localizationTexts.noData}
+                  loading={loading}
+                  pages={pages}
+                  page={page}
+                  onPageChange={this.handlePageChange}
+                  onPageSizeChange={this.handlePageSizeChange}
+                  getTrGroupProps={
+                    (state, row) => {
+                      const className = !row ? "hidden" : "";
+                      return {
+                        className,
+                      };
+                    }
+                  }
+                  getTrProps={
+                    (state, row) => {
+                      const onClick = () => this.handleSelectRow(row);
+                      const className = selectedRow && row && selectedRow.index === row.index ? "selected" : "";
+
+                      return {
+                        onClick,
+                        className,
+                      };
+                    }
+                  }
+                />
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button
+                bsStyle="primary"
+                onClick={this.handleSelect}
+                disabled={!selectedRow || selectedRow.original.disabled}
+              >
+                {localizationTexts.select}
+              </Button>
+              <Button bsStyle="default" onClick={this.handleClose}>
+                {localizationTexts.close}
+              </Button>
+            </Modal.Footer>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            bsStyle="primary"
-            onClick={this.handleSelect}
-            disabled={!selectedRow || selectedRow.original.disabled}
-          >
-            {localizationTexts.select}
-          </Button>
-          <Button bsStyle="default" onClick={this.handleClose}>
-            {localizationTexts.close}
-          </Button>
-        </Modal.Footer>
+          {
+            rightPanel && (
+              <div className="combobox-with-search__modal-panel combobox-with-search__modal-panel--right">
+                { rightPanel }
+              </div>
+            )
+          }
+        </div>
       </Modal>
     );
   }
@@ -284,6 +316,7 @@ SearchModal.propTypes = {
   onClose: PropTypes.func,
   onSelect: PropTypes.func,
   localizationTexts: PropTypes.object,
+  components: PropTypes.object.isRequired,
 };
 
 
@@ -291,10 +324,9 @@ SearchModal.defaultProps = {
   title: '',
   fields: [],
   loadOptions: () => Promise.resolve({ data: [], totalCount: 0 }),
-  onClose: () => {
-  },
-  onSelect: () => {
-  },
+  onClose: () => {},
+  onSelect: () => {},
+  components: {},
 };
 
 

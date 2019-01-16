@@ -1,4 +1,63 @@
 .combobox-with-search__modal {
+  --main-panel-width: 600px;
+  --side-panel-width: 300px;
+  --one-panel-width: var(--main-panel-width);
+  --two-panel-width: calc( var(--main-panel-width) + var(--side-panel-width) );
+  --three-panel-width: calc( var(--main-panel-width) + ( 2 * var(--side-panel-width) ) );
+  padding: 10px;
+
+  .modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px auto;
+  }
+
+  @media (min-width: 620px) {
+    .modal-dialog {
+      max-width: 95%;
+    }
+
+    .combobox-with-search__modal-with-1-panels {
+      width: var(--one-panel-width);
+    }
+  }
+
+  @media (min-width: 920px) {
+    .combobox-with-search__modal-with-2-panels {
+      width: var(--two-panel-width);
+    }
+  }
+
+  @media (min-width: 1220px) {
+    .combobox-with-search__modal-with-3-panels {
+      width: var(--three-panel-width);
+    }
+  }
+
+  .combobox-with-search__modal-panels {
+    display: flex;
+    flex-direction: row;
+
+    .combobox-with-search__modal-panel {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .combobox-with-search__modal-panel--center {
+      width: var(--main-panel-width);
+    }
+
+    .combobox-with-search__modal-panel--left {
+      border-right: 1px solid #e5e5e5;
+      width: var(--side-panel-width);
+    }
+
+    .combobox-with-search__modal-panel--right {
+      border-left: 1px solid #e5e5e5;
+      width: var(--side-panel-width);
+    }
+  }
+
   .combobox-with-search__modal-search-filters {
     display: flex;
     flex-direction: row;
