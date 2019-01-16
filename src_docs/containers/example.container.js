@@ -1,6 +1,6 @@
 import React from 'react';
 import { Panel, Grid, Row, Col } from 'react-bootstrap';
-import Examples from '../components/example.component';
+import * as Examples from '../components/';
 import GithubLogo from '../images/logo-github.svg';
 
 export default () => (
@@ -21,7 +21,13 @@ export default () => (
           </Col>
         </Row>
         <Panel>
-          <Examples />
+          <div style={{ padding: '20px' }}>
+            {
+              Object.values(Examples).map((Example, i) => (
+                <Example key={`example-${i}`}/>
+              ))
+            }
+          </div>
         </Panel>
       </Col>
     </Row>
