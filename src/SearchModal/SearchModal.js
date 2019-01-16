@@ -31,6 +31,11 @@ const DEFAULT_TEXTS = {
 };
 
 
+const getDialogClassName = ({ panels }) => {
+  const panelCount = panels.filter(val => !!val).length + 1;
+  return `combobox-with-search__modal-with-${panelCount}-panels`;
+};
+
 class SearchModal extends Component {
   constructor(props) {
     super(props);
@@ -192,13 +197,21 @@ class SearchModal extends Component {
       rowsSelectorText: localizationTexts.rowsSelector || DEFAULT_TEXTS.rowsSelector,
     };
 
+    const leftPanel = LeftPanel && LeftPanel({ selectedRow });
+    const rightPanel = RightPanel && RightPanel({ selectedRow });
+
     return (
-      <Modal className="combobox-with-search__modal" show={true} onHide={this.handleClose}>
+      <Modal
+        className="combobox-with-search__modal"
+        dialogClassName={getDialogClassName({ panels: [leftPanel, rightPanel] })}
+        show={true}
+        onHide={this.handleClose}
+      >
         <div className="combobox-with-search__modal-panels">
           {
-            LeftPanel && (
+            leftPanel && (
               <div className="combobox-with-search__modal-panel combobox-with-search__modal-panel--left">
-                { LeftPanel({ selectedRow }) }
+                { leftPanel }
               </div>
             )
           }
@@ -281,9 +294,9 @@ class SearchModal extends Component {
             </Modal.Footer>
           </div>
           {
-            RightPanel && (
+            rightPanel && (
               <div className="combobox-with-search__modal-panel combobox-with-search__modal-panel--right">
-                { RightPanel({ selectedRow }) }
+                { rightPanel }
               </div>
             )
           }

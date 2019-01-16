@@ -6,10 +6,20 @@ import {
   comboLoadOptions,
 } from './utils';
 
+const CustomPanel = ({ selectedRow }) => { // eslint-disable-line react/prop-types
+  return selectedRow ? (
+    <div style={{ overflow: 'hidden' }}>
+      <pre>
+        { JSON.stringify(selectedRow, null, '  ') }
+      </pre>
+    </div>
+  ) : "Select an item for additional information";
+};
+
 export const ExampleComponent = () => {
   return (
     <div>
-      <h4>Simple component</h4>
+      <h4>Custom sidepanel</h4>
       <Select
         localizationTexts={{
           "close": "Close",
@@ -42,6 +52,9 @@ export const ExampleComponent = () => {
             'description',
           ],
           loadOptions: modalLoadOptions,
+          components: {
+            RightPanel: CustomPanel,
+          }
         }}
       />
     </div>
