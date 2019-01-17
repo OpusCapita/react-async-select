@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Fix sidepanels defined as classes
 
 ## 2.4.0
 * Add custom component for a side panel
