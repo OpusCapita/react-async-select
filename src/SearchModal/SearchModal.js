@@ -197,8 +197,8 @@ class SearchModal extends Component {
       rowsSelectorText: localizationTexts.rowsSelector || DEFAULT_TEXTS.rowsSelector,
     };
 
-    const leftPanel = LeftPanel && LeftPanel({ selectedRow });
-    const rightPanel = RightPanel && RightPanel({ selectedRow });
+    const leftPanel = LeftPanel && (<LeftPanel selectedRow={selectedRow}/>);
+    const rightPanel = RightPanel && (<RightPanel selectedRow={selectedRow}/>);
 
     return (
       <Modal
