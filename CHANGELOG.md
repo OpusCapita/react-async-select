@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Style and structure improvements
 
 ## 2.4.1
 * Fix sidepanels defined as classes
