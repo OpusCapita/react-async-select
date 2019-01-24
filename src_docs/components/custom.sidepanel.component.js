@@ -8,7 +8,7 @@ import {
 
 const CustomPanel = ({ selectedRow }) => { // eslint-disable-line react/prop-types
   return selectedRow ? (
-    <div style={{ overflow: 'hidden' }}>
+    <div style={{ overflow: 'auto' }}>
       <pre>
         { JSON.stringify(selectedRow, null, '  ') }
       </pre>

@@ -205,8 +205,14 @@ class SearchModal extends Component {
         className="combobox-with-search__modal"
         dialogClassName={getDialogClassName({ panels: [leftPanel, rightPanel] })}
         show={true}
+        style={{ display: 'flex' }}
         onHide={this.handleClose}
       >
+        <Modal.Header closeButton={true}>
+          <h4 className="combobox-with-search__modal-title combobox-with-search__modal-title--1-panel">
+            {this.props.title}
+          </h4>
+        </Modal.Header>
         <div className="combobox-with-search__modal-panels">
           {
             leftPanel && (
@@ -216,12 +222,10 @@ class SearchModal extends Component {
             )
           }
           <div className="combobox-with-search__modal-panel combobox-with-search__modal-panel--center">
-            <Modal.Header closeButton={true}>
-              <h4>
+            <Modal.Body>
+              <h4 className="combobox-with-search__modal-title combobox-with-search__modal-title--2-3-panels">
                 {this.props.title}
               </h4>
-            </Modal.Header>
-            <Modal.Body>
               <div className="combobox-with-search__modal-search-filters">
                 {
                   firstField && this.renderSearchField(
