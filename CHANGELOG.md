@@ -4,6 +4,9 @@
 
 ## <next>
 
+## 2.4.3
+* Modify CSS variables to SCSS variables
+
 ## 2.4.2
 * Style and structure improvements
 
