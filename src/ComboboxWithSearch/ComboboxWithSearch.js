@@ -115,6 +115,8 @@ export class ComboboxWithSearch extends Component {
               ignoreAccents: false,
               matchFrom: 'any',
             })}
+            ref={(node) => { this.props.setRef(node); }}
+            onKeyDown={this.props.onKeyDown}
           />
         </div>
         {
@@ -154,6 +156,8 @@ ComboboxWithSearch.propTypes = {
     onClose: PropTypes.func,
     onSelect: PropTypes.func,
   }),
+  setRef: PropTypes.func,
+  onKeyDown: PropTypes.func,
 };
 
 ComboboxWithSearch.defaultProps = {
@@ -165,6 +169,8 @@ ComboboxWithSearch.defaultProps = {
     return value;
   },
   isDisabled: false,
+  setRef: () => {},
+  onKeyDown: () => {},
 };
 
 export default ComboboxWithSearch;
