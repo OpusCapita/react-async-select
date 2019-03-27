@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 2.5.0
 * Add support for setting external ref to select
 
 ## 2.4.3
