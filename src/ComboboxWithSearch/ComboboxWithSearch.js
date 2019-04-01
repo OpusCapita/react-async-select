@@ -115,7 +115,7 @@ export class ComboboxWithSearch extends Component {
               ignoreAccents: false,
               matchFrom: 'any',
             })}
-            ref={(node) => { this.props.setRef(node); }}
+            innerRef={(node) => { this.props.setRef(node); }}
             onKeyDown={this.props.onKeyDown}
           />
         </div>
