@@ -2,7 +2,7 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## <next>
+## 2.5.1
 * Fix Async select, ref > innerRef
 
 ## 2.5.0
