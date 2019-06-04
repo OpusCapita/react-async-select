@@ -2,6 +2,9 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## 2.5.2
+* Add missing select highlight to SearchModal
+
 ## 2.5.1
 * Fix Async select, ref > innerRef
 
