@@ -135,6 +135,10 @@
   .rt-tbody {
     max-height: 400px;
     overflow-y: scroll;
+
+    .selected {
+      background-color: #e6e9eb;
+    }
   }
 
   .ReactTable .-pagination .-center {
