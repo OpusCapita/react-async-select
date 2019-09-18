@@ -2,6 +2,9 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## 2.6.1
+* Add debounce to data fetching
+
 ## 2.5.2
 * Add missing select highlight to SearchModal
 
