@@ -4,6 +4,8 @@ import { Modal, Button } from 'react-bootstrap';
 import ReactTable from 'react-table';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
 
+import { DEBOUNCE_LIMIT } from '../ComboboxWithSearch/ComboboxWithSearch';
+
 import './SearchModal.scss';
 
 
@@ -56,7 +58,10 @@ class SearchModal extends Component {
       loading: true,
     };
 
-    this.loadOptionsDebounced = AwesomeDebouncePromise(props.loadOptions, 500);
+    this.loadOptionsDebounced = AwesomeDebouncePromise(
+      props.loadOptions,
+      DEBOUNCE_LIMIT,
+    );
   }
 
 

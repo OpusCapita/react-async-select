@@ -17,6 +17,8 @@ const ICON_SIZE = {
   height: 15,
 };
 
+export const DEBOUNCE_LIMIT = 500;
+
 const valueBecomesDefinedOrIsCleared = (nextProps, currentProps) => !!nextProps.value !== !!currentProps.value;
 const optionValueChanges = (nextProps, currentProps) => nextProps.value && currentProps.value &&
   nextProps.value.value !== currentProps.value.value;
@@ -32,7 +34,10 @@ export class ComboboxWithSearch extends Component {
       showModal: false,
     };
 
-    this.loadOptionsDebounced = AwesomeDebouncePromise(props.loadOptions, 500);
+    this.loadOptionsDebounced = AwesomeDebouncePromise(
+      props.loadOptions,
+      DEBOUNCE_LIMIT,
+    );
   }
 
   componentDidMount() {
