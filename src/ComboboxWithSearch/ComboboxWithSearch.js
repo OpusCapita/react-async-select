@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Icon } from '@opuscapita/react-icons';
 import { Async as Select } from '@opuscapita/react-select';
 import { createFilter } from 'react-select';
+import AwesomeDebouncePromise from 'awesome-debounce-promise';
 
 import FloatingMenu from './FloatingMenu';
 import SearchModal from '../SearchModal';
@@ -15,6 +16,8 @@ const ICON_SIZE = {
   width: 15,
   height: 15,
 };
+
+export const DEBOUNCE_LIMIT = 500;
 
 const valueBecomesDefinedOrIsCleared = (nextProps, currentProps) => !!nextProps.value !== !!currentProps.value;
 const optionValueChanges = (nextProps, currentProps) => nextProps.value && currentProps.value &&
@@ -30,6 +33,11 @@ export class ComboboxWithSearch extends Component {
       value,
       showModal: false,
     };
+
+    this.loadOptionsDebounced = AwesomeDebouncePromise(
+      props.loadOptions,
+      DEBOUNCE_LIMIT,
+    );
   }
 
   componentDidMount() {
@@ -66,7 +74,6 @@ export class ComboboxWithSearch extends Component {
 
   render() {
     const {
-      loadOptions,
       onSelect, // eslint-disable-line no-unused-vars
       handleChange, // eslint-disable-line no-unused-vars
       localizationTexts,
@@ -95,13 +102,14 @@ export class ComboboxWithSearch extends Component {
       };
       return FloatingMenu(newProps);
     };
+
     return (
       <div className="combobox-with-search">
         <div className="combobox-with-search__combobox">
           <Select
             {...extraProps}
             isDisabled={isDisabled}
-            loadOptions={loadOptions}
+            loadOptions={this.loadOptionsDebounced}
             onChange={value => this.handleChange(value)}
             value={this.state.value}
             components={{
