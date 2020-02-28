@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Select from '../../src/index';
 
 import {
@@ -17,6 +17,8 @@ const CustomPanel = ({ selectedRow }) => { // eslint-disable-line react/prop-typ
 };
 
 export const ExampleComponent = () => {
+  const [value, setValue] = useState(null);
+
   return (
     <div>
       <h4>Custom sidepanel</h4>
@@ -41,9 +43,9 @@ export const ExampleComponent = () => {
           "pageJump": "JUMP",
           "rowsSelector": "RPP",
         }}
-        value={{ value: 'b', label: 'second char commonStr' }}
+        value={value}
         loadOptions={comboLoadOptions}
-        onSelect={value => console.log({ value })}
+        onSelect={value => setValue(value)}
         isOptionDisabled={option => option.disabled}
         modal={{
           title: 'Search entries',

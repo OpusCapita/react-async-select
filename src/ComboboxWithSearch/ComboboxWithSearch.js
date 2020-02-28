@@ -19,18 +19,12 @@ const ICON_SIZE = {
 
 export const DEBOUNCE_LIMIT = 500;
 
-const valueBecomesDefinedOrIsCleared = (nextProps, currentProps) => !!nextProps.value !== !!currentProps.value;
-const optionValueChanges = (nextProps, currentProps) => nextProps.value && currentProps.value &&
-  nextProps.value.value !== currentProps.value.value;
 
 export class ComboboxWithSearch extends Component {
   constructor(props) {
     super(props);
-    const {
-      value,
-    } = props;
+
     this.state = {
-      value,
       showModal: false,
     };
 
@@ -42,14 +36,6 @@ export class ComboboxWithSearch extends Component {
 
   componentDidMount() {
     this.dropdownFieldNode = ReactDOM.findDOMNode(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (valueBecomesDefinedOrIsCleared(nextProps, this.props) || optionValueChanges(nextProps, this.props)) {
-      this.setState({
-        value: nextProps.value,
-      });
-    }
   }
 
   handleOpen = () => {
@@ -64,23 +50,15 @@ export class ComboboxWithSearch extends Component {
     });
   };
 
-  handleChange = (value) => {
-    this.props.handleChange({
-      value,
-      setState: newState => this.setState({ ...newState }),
-      onSelect: value => this.props.onSelect(value),
-    });
-  }
-
   render() {
     const {
       onSelect, // eslint-disable-line no-unused-vars
-      handleChange, // eslint-disable-line no-unused-vars
       localizationTexts,
       isDisabled,
       filters,
       renderers,
       modal: modalProps,
+      value,
       ...extraProps
     } = this.props;
     const DropdownIndicator = (props) => {
@@ -110,8 +88,8 @@ export class ComboboxWithSearch extends Component {
             {...extraProps}
             isDisabled={isDisabled}
             loadOptions={this.loadOptionsDebounced}
-            onChange={value => this.handleChange(value)}
-            value={this.state.value}
+            onChange={onSelect}
+            value={value}
             components={{
               DropdownIndicator,
               Menu,
@@ -131,7 +109,7 @@ export class ComboboxWithSearch extends Component {
           this.state.showModal ?
             <SearchModal
               onClose={this.handleClose}
-              onSelect={this.handleChange}
+              onSelect={onSelect}
               localizationTexts={localizationTexts}
               filters={filters}
               renderers={renderers}
@@ -153,7 +131,6 @@ ComboboxWithSearch.propTypes = {
   renderers: PropTypes.object,
   loadOptions: PropTypes.func,
   onSelect: PropTypes.func,
-  handleChange: PropTypes.func,
   localizationTexts: PropTypes.object,
   isDisabled: PropTypes.bool,
   modal: PropTypes.shape({
@@ -171,11 +148,6 @@ ComboboxWithSearch.propTypes = {
 ComboboxWithSearch.defaultProps = {
   loadOptions: () => Promise.resolve([]),
   onSelect: () => {},
-  handleChange: ({ value, setState, onSelect }) => {
-    setState({ value });
-    onSelect(value);
-    return value;
-  },
   isDisabled: false,
   setRef: () => {},
   onKeyDown: () => {},

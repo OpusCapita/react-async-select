@@ -2,6 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## 3.0.0
+* Remove handleChange prop and let the consuming app to determine how values are
+  set
+
 ## 2.6.1
 * Add debounce to data fetching
 

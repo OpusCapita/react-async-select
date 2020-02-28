@@ -25,7 +25,6 @@ Also you need to configure sass loader, since all the styles are in sass format.
 | ---------------------------------- | -------- | -------------------------------------------------- | -------------------------------------------------- |
 | value                              | any      |                                                    | The initially selected value                       |
 | onSelect                           | function | () => {}                                           | Selection callback function                        |
-| handleChange                       | function | Sets internal state and calls setState callback    | Handles internal state on selecting an item        |
 | loadOptions                        | function | () => Promise.resolve([])                          | Function for fetching options for the combobox     |
 | isDisabled                         | boolean  | false                                              | Disables the component from user interaction       |
 | localizationTexts                  | object   |                                                    | A dictionary with translated texts as values       |
@@ -57,10 +56,12 @@ Also you need to configure sass loader, since all the styles are in sass format.
 
 ### Code example
 ```jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { Dropdown } from '@opuscapita/react-component-example';
 
 export default class ReactView extends React.Component {
+  const [value, setValue] = useState(null);
+
   render() {
     return (
       <Dropdown
@@ -84,19 +85,14 @@ export default class ReactView extends React.Component {
           "rowsSelector": "RPP",
         }}
         isDisabled={false}
-        value={{ value: 'a', label: 'The first letter in the alphabet, transformed with String.toLowerCase' }}
+        value={value}
         loadOptions={
           () => Promise.resolve([
             { label: 'a_DisplayValue', value: 'a' }
             { label: 'b_DisplayValue', value: 'b' }
           ])
         }
-        onSelect={() => { /* Capture new selected value */ }}
-        handleChange={({ value, setState, onSelect }) => {
-          setState({ value });
-          onSelect(value);
-          return value;
-        }}
+        onSelect={value => setValue(value)}
         modal={{
           title: 'Search entries',
           fields: [
