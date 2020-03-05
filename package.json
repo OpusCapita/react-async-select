@@ -57,7 +57,7 @@
     "cross-env": "5.2.0",
     "css-loader": "0.28.11",
     "enzyme": "3.3.0",
-    "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-adapter-react-16": "1.15.2",
     "eslint": "3.19.0",
     "eslint-config-opuscapita": "1.0.4",
     "eslint-plugin-import": "2.2.0",
