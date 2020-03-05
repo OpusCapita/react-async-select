@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Checkbox from 'react-bootstrap/lib/Checkbox';
 import Select from '../../src/index';
 
@@ -8,10 +8,13 @@ import {
 } from './utils';
 
 export const ExampleComponent = () => {
+  const [value, setValue] = useState(null);
+
   return (
     <div>
       <h4>Customized filter</h4>
       <Select
+        value={value}
         localizationTexts={{
           "close": "Close",
           "select": "Select",
@@ -40,11 +43,7 @@ export const ExampleComponent = () => {
           )
         }}
         loadOptions={comboLoadOptions}
-        onSelect={value => console.log({ value })}
-        handleChange={({ value, setState, onSelect }) => {
-          onSelect(value);
-          return value;
-        }}
+        onSelect={value => setValue(value)}
         modal={{
           title: 'Search entries',
           fields: [

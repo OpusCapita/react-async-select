@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Select from '../../src/index';
 
 import {
@@ -7,6 +7,8 @@ import {
 } from './utils';
 
 export const ExampleComponent = () => {
+  const [value, setValue] = useState(null);
+
   return (
     <div>
       <h4>Search with disabled rows</h4>
@@ -31,10 +33,9 @@ export const ExampleComponent = () => {
           "pageJump": "JUMP",
           "rowsSelector": "RPP",
         }}
-        value={{ value: 'b', label: 'second char commonStr' }}
+        value={value}
         loadOptions={comboLoadOptions}
-        onSelect={value => console.log('onSelect', { value })}
-        handleChange={({ value, onSelect }) => console.log('handleChange', value, onSelect)}
+        onSelect={value => setValue(value)}
         modal={{
           title: 'Search entries',
           fields: ['code', 'description'],
