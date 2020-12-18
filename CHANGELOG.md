@@ -2,6 +2,9 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## 3.0.1
+* Updated drop down menu to flip based on left space.
+
 ## 3.0.0
 * Remove handleChange prop and let the consuming app to determine how values are
   set

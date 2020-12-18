@@ -31,6 +31,11 @@ export default class TetherComponent extends React.PureComponent {
     matchWidth: PropTypes.bool.isRequired,
   }
 
+  constructor(props) {
+    super(props);
+    this.tetherChild = React.createRef();
+  }
+
   componentDidMount() {
     this.tetherContainer = document.createElement('div');
     document.body.appendChild(this.tetherContainer);
@@ -39,6 +44,13 @@ export default class TetherComponent extends React.PureComponent {
 
   componentDidUpdate() {
     this.renderTetheredContent();
+    if (this.tetherChild.current) {
+      this.tetherChildNode = ReactDOM.findDOMNode(this.tetherChild.current);
+      let [margin] = window.getComputedStyle(this.tetherChildNode).margin.split(' ');
+      // expects that margin is in px
+      margin = margin.match(/\d+/);
+      this.marginOffset = margin * 2;
+    }
   }
 
   componentWillUnmount() {
@@ -52,6 +64,10 @@ export default class TetherComponent extends React.PureComponent {
         element: this.tetherContainer,
         target: this.props.target,
       });
+    }
+    if (this.tetherChildNode) {
+      const height = this.tetherChildNode.clientWidth ? this.tetherChildNode.clientHeight + this.marginOffset : 0;
+      this.tetherContainer.style.height = `${height}px`;
     }
     if (this.props.matchWidth) {
       this.tetherContainer.style.width = `${this.props.target.clientWidth}px`;
@@ -70,6 +86,7 @@ export default class TetherComponent extends React.PureComponent {
   renderTetheredContent() {
     ReactDOM.render(
       <TetheredChildrenComponent
+        ref={this.tetherChild}
         target={this.props.target}
         position={this.position}
       >
