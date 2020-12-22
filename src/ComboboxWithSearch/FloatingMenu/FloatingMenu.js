@@ -24,9 +24,11 @@ const FloatingMenu = props => {
       options={options}
       matchWidth={true}
     >
-      <components.Menu {...menuProps}>
-        {menuProps.children}
-      </components.Menu>
+      <div className='combobox-with-search-floating-menu'>
+        <components.Menu {...menuProps}>
+          {menuProps.children}
+        </components.Menu>
+      </div>
     </TetherComponent>
   );
 };
