@@ -46,7 +46,7 @@ export default class TetherComponent extends React.PureComponent {
     this.renderTetheredContent();
     if (this.tetherChild.current) {
       this.tetherChildNode = ReactDOM.findDOMNode(this.tetherChild.current);
-      let [margin] = window.getComputedStyle(this.tetherChildNode).margin.split(' ');
+      let [margin] = window.getComputedStyle(this.tetherChildNode.firstChild).margin.split(' ');
       // expects that margin is in px
       margin = margin.match(/\d+/);
       this.marginOffset = margin * 2;
